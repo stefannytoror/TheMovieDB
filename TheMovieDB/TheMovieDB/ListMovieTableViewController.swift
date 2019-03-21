@@ -7,20 +7,26 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ListMovieTableViewController: UITableViewController {
     
     var movies = [Movie]()
-    var images = [UIImage]()
+    let identifier = String(describing: CustomMovieTableViewCell.self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let nib = UINib(nibName: identifier, bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: identifier)
         
         Request.requestMovie(completionHandler: { (listMovie) in
             
             self.movies = listMovie.results
             // First finish the request then upload tableview with the array
             self.tableView.reloadData()
+            
             
             
         }) { (errorEnum) in
@@ -46,24 +52,29 @@ class ListMovieTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "MovieTableViewCell"
+        //let cellIdentifier = "CustomMovieTableViewCell"
+        //let cellIdentifier = "MovieTableViewCell"
+        
         
         // -- study--
                 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MovieTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CustomMovieTableViewCell else {
             fatalError("The dequeued cell is not an instance of MovieTableViewCell.")
         }
         
         
         let movie = movies[indexPath.row]
-        
-        Request.requestImage(movie: movie) { (data) in
+        let image = movie.poster_path
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)")
+        //cell.customTitleMovie.text = movie.titleMovie
+        cell.customImageMovie.af_setImage(withURL: url!)
+        /*Request.requestImage(movie: movie) { (data) in
             guard let image = UIImage(data: data) else {
                 return
             }
-            cell.imageMovie.image = image
-        }
-        cell.titleMovie.text = movie.titleMovie
+            cell.customImageMovie.image = image
+        }*/
+        //cell.titleMovie.text = movie.titleMovie
         
 
         return cell

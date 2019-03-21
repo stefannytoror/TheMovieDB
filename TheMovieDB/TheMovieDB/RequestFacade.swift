@@ -14,7 +14,6 @@ struct Movie: Codable {
     var overview: String
     var poster_path: String
     
-    
     enum CodingKeys: String, CodingKey {
         case titleMovie = "title"
         case overview
@@ -36,24 +35,11 @@ enum ErrorEnum {
 }
 
 
-/*
-var completionHandlers: [() -> Void] = []
-func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
-    completionHandlers.append(completionHandler)
-}*/
-
 
 // capture use and then dealloc
 class Request {
     static let url = "https://api.themoviedb.org/3/trending/movie/day?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
-    
-    /*lazy var showUrlRequest: () -> Void = {
-        //[ unowned self ] in
-        print(self.url)
-    }*/
-    
    
-    
     // Completionhandler will be a function with a movie as a parameter and his return is void
     
     static func requestMovie(completionHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
