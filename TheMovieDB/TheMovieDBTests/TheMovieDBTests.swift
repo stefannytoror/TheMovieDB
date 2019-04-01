@@ -7,38 +7,95 @@
 //
 
 import XCTest
+import OHHTTPStubs
+
 @testable import TheMovieDB
 
 class TheMovieDBTests: XCTestCase {
-    var testMovie: [Movie]()
+    var testMovie = [Movie]()
+    var error = ErrorEnum.errorConectionFaile.errorDescription
+    var mockMovieJson: [String: Any]?
+    var mockListMovie = ListMovie()
+    var mockMovie = Movie()
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        mockMovieJson = [
+            "page": 1,
+            "results": [
+                ["backdrop_path": "/pZ78ksjPlXf3q2EeONN8WdHE03Y.jpg",
+                    "id": 500682,
+                    "overview": "In 1934",
+                    "release_date": "2019-03-15",
+                    "title": "The Highwaymen",
+                    "vote_average": 7.2,
+                    "vote_count": 101,
+                    "popularity": 20.394
+                ],
+                [
+                    "backdrop_path": "/pZ78ksjPlXf3q2EeONN8WdHE03Y.jpg",
+                    "id": 500682,
+                    "overview": "In 1934",
+                    "release_date": "2019-03-15",
+                    "title": "The Highwaymen",
+                    "vote_average": 7.2,
+                    "vote_count": 101,
+                    "popularity": 20.394
+                ]
+                ]
+        ]
+        mockMovie.backdrop_path =  "/pZ78ksjPlXf3q2EeONN8WdHE03Y.jpg"
+        mockMovie.id = 500682
+        mockMovie.overview = "In 1934"
+        mockMovie.titleMovie = "The Highwaymen"
+        mockMovie.popularity = 20.394
+        mockMovie.vote_count = 101
+        mockMovie.vote_average = 7.2
+        mockListMovie.page = 1
+        mockListMovie.results = [mockMovie]
+        
     }
-    
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+       
         super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        OHHTTPStubs.removeAllStubs()
     }
     
     func testRequestFacade(){
-        Request.requestMovie(completionHandler: { (listMovie) in
+        var error2: String = ""
+        RequestFacade.url = ""
+        let expectation = self.expectation(description: "MakingRequest")
+        
+        RequestFacade.Trending(movieHandler: { (listMovie) in
+            XCTFail()
         }) { (errorEnum) in
-            <#code#>
+            error2 = errorEnum.errorDescription ?? ""
+            expectation.fulfill()
         }
+        waitForExpectations(timeout: 10.0, handler: nil)
+        XCTAssert(error2 == error)
     }
+    
+    func testRequestMovie(){
+        RequestFacade.url = "https://api.themoviedb.org/3/trending/movie/day?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+        stub(condition: isHost("api.themoviedb.org")) { _ in
+            return OHHTTPStubsResponse(jsonObject: self.mockMovieJson!,
+                                       statusCode: 200,
+                                       headers: nil)
+        }
+        let waiting = self.expectation(description: "MakingRequestMovieTrending")
+        
+        RequestFacade.Trending(movieHandler: { (listMovie) in
+            
+            XCTAssertEqual(self.mockListMovie.page,listMovie.page)
+            
+        }) { (errorEnum) in
+            print(errorEnum)
+            waiting.fulfill()
+        }
+        waitForExpectations(timeout: 10.0, handler: nil)
+        
+    }
+    
     
 }

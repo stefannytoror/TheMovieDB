@@ -12,12 +12,12 @@ import Alamofire
 
 
 // Capture use and then dealloc
-class Request {
-    private static let url = "https://api.themoviedb.org/3/trending/movie/day?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+class RequestFacade {
+    public static var url = "https://api.themoviedb.org/3/trending/movie/day?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+    
     // Completionhandler will be a function with a movie as a parameter and his return is void
-    static func requestMovie(completionHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
+    static func Trending(movieHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
         Alamofire.request(url).responseJSON { response in
-            
             switch response.result {
                 
             case .success:
@@ -28,7 +28,7 @@ class Request {
                 }
                 do {
                     // Call the method and can escape
-                    completionHandler(try JSONDecoder().decode(ListMovie.self, from: data))
+                    movieHandler(try JSONDecoder().decode(ListMovie.self, from: data))
                     
                 } catch let e as DecodingError {
                     errorHandler(ErrorEnum.errorDecoder(e.localizedDescription))
@@ -38,7 +38,7 @@ class Request {
                 }
                 
             case .failure(let error):
-                errorHandler(ErrorEnum.errorConectionFaile(error))
+                errorHandler(ErrorEnum.errorConectionFaile)
             }
         }
     }

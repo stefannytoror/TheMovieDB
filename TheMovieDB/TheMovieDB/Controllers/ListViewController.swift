@@ -24,14 +24,8 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Trending"
         checkDevice()
-        Request.requestMovie(completionHandler: { (listMovie) in
-            self.movies = listMovie.results
-            self.listView?.reloadData()
-        }) { (errorEnum) in
-            print(errorEnum.errorDescription as Any)
-        }
-        view.addSubview(listView as! UIView)
-        listView?.listDelegate = self
+        requestTrending()
+        configurelistView()
     }
     
     func checkDevice() {
@@ -41,6 +35,20 @@ class ListViewController: UIViewController {
         else {
             listView = ViewListTable()
         }
+    }
+    
+    func requestTrending() {
+        RequestFacade.Trending(movieHandler: { (listMovie) in
+            self.movies = listMovie.results
+            self.listView?.reloadData()
+        }) { (errorEnum) in
+            print(errorEnum.errorDescription as Any)
+        }
+    }
+    
+    func configurelistView() {
+        view.addSubview(listView as! UIView)
+        listView?.listDelegate = self
     }
 }
 

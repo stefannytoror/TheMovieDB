@@ -9,15 +9,15 @@
 import Foundation
 
 struct Movie: Codable {
-    var id: Int
-    var titleMovie: String
-    var overview: String
-    var poster_path: String
-    var backdrop_path: String
-    var release_date: String
-    var popularity: Float
-    var vote_average: Float
-    var vote_count: Int
+    var id: Int = 0
+    var titleMovie: String = ""
+    var overview: String = ""
+    var poster_path: String = ""
+    var backdrop_path: String = ""
+    var release_date: String = ""
+    var popularity: Float = 0
+    var vote_average: Float = 0
+    var vote_count: Int = 0
     //spoken_languages
     
     enum CodingKeys: String, CodingKey {
@@ -34,6 +34,6 @@ struct Movie: Codable {
 }
 
 struct ListMovie: Codable {
-    var page: Int
-    var results: [Movie]
+    var page: Int = 0
+    var results: [Movie] = [Movie()]
 }

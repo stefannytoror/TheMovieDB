@@ -10,11 +10,6 @@ import Foundation
 import UIKit
 import Alamofire
 
-protocol MovieListDelegate: class {
-    func numberOfItems() -> Int
-    func configure(cell: Cell, index: Int)
-    func didSelectItemAt(index: Int)
-}
 
 protocol ListView {
     var listDelegate: MovieListDelegate? {get set}

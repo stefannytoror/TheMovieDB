@@ -11,7 +11,7 @@ import Foundation
 enum ErrorEnum: Error {
     case errorDecoder(String)
     case errorDataNotFound
-    case errorConectionFaile(Error)
+    case errorConectionFaile
     case otherError
 }
 
@@ -24,7 +24,7 @@ extension ErrorEnum: LocalizedError {
             return NSLocalizedString("Description", comment: "")
         case .otherError:
             return NSLocalizedString("Other error", comment: "")
-        case .errorConectionFaile(_):
+        case .errorConectionFaile:
             return NSLocalizedString("Error conection faile", comment: "")
         }
     }
