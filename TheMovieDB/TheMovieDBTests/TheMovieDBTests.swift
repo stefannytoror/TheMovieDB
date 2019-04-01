@@ -10,6 +10,7 @@ import XCTest
 @testable import TheMovieDB
 
 class TheMovieDBTests: XCTestCase {
+    var testMovie: [Movie]()
     
     override func setUp() {
         super.setUp()
@@ -30,6 +31,13 @@ class TheMovieDBTests: XCTestCase {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
+        }
+    }
+    
+    func testRequestFacade(){
+        Request.requestMovie(completionHandler: { (listMovie) in
+        }) { (errorEnum) in
+            <#code#>
         }
     }
     

@@ -10,11 +10,10 @@ import Foundation
 import UIKit
 import Alamofire
 
-// delegate that act like a datasource
 protocol MovieListDelegate: class {
     func numberOfItems() -> Int
     func configure(cell: Cell, index: Int)
-    func didSelectItemAt(item: Int)
+    func didSelectItemAt(index: Int)
 }
 
 protocol ListView {
@@ -25,4 +24,5 @@ protocol ListView {
 protocol Cell {
     var customImageMovie: UIImageView! {get}
     var customTitleMovie: UILabel? {get}
+    var customVoteAverageMovie: UILabel? {get}
 }

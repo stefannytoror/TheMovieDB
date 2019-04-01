@@ -13,9 +13,13 @@ class CustomMovieTableViewCell: UITableViewCell, Cell {
     //MAKE: Properties
     @IBOutlet weak var customImageMovie: UIImageView!
     @IBOutlet weak var customTitleMovie: UILabel?
+    @IBOutlet weak var customImageStar: UIImageView!
+    @IBOutlet weak var customVoteAverageMovie: UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let star = UIImage(named: "highlightedStar") ?? nil
+            customImageStar.image = star
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

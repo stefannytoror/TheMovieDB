@@ -14,12 +14,11 @@ class ViewListCollection: UICollectionView, ListView {
     var listDelegate: MovieListDelegate?
     let identifier = String(describing: CustomCollectionViewCell.self)
     let itemsPerRow = CGFloat(4)
-    let sizeItem = CGSize(width: 200, height: 300)
+    let itemSize = CGSize(width: 200, height: 300)
     
     init() {
         super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-        let nib = UINib(nibName: identifier, bundle: nil)
-        register(nib, forCellWithReuseIdentifier: identifier)
+        initializeCollection()
         dataSource = self
         delegate = self
     }
@@ -27,30 +26,45 @@ class ViewListCollection: UICollectionView, ListView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func initializeCollection() {
+        let nib = UINib(nibName: identifier, bundle: nil)
+        register(nib, forCellWithReuseIdentifier: identifier)
+    }
 }
 
-extension ViewListCollection: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//MARK: Datasource
+extension ViewListCollection: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listDelegate?.numberOfItems() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier , for: indexPath) as? CustomCollectionViewCell else {
             fatalError("The dequeued cell is not an instance ")
         }
         listDelegate?.configure(cell: cell, index: indexPath.row)
         return cell
     }
-    
+}
+
+//MARK: DelegateFlowLayout
+extension ViewListCollection:  UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return sizeItem
+        return itemSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let width = collectionView.bounds.width
-        let left = ((width - (sizeItem.width * itemsPerRow)) / (itemsPerRow + 1))
-        let right = ((width - (sizeItem.width * itemsPerRow)) / (itemsPerRow + 1))
+        let left = ((width - (itemSize.width * itemsPerRow)) / (itemsPerRow + 1))
+        let right = ((width - (itemSize.width * itemsPerRow)) / (itemsPerRow + 1))
         return UIEdgeInsets(top: 0, left: left, bottom: 0, right: right)
+    }
+}
+
+//MARK: Delegate
+extension ViewListCollection: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        listDelegate?.didSelectItemAt(index: indexPath.item )
     }
 }

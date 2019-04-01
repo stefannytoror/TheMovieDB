@@ -11,6 +11,7 @@ import UIKit
 class CustomCollectionViewCell: UICollectionViewCell, Cell {
     
     var customTitleMovie: UILabel?
+     var customVoteAverageMovie: UILabel?
     @IBOutlet weak var customImageMovie: UIImageView!
     
     override func awakeFromNib() {
@@ -19,7 +20,6 @@ class CustomCollectionViewCell: UICollectionViewCell, Cell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        //customTitleCollection.text = ""
         customImageMovie.image = nil
     }
 }
