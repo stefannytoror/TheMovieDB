@@ -9,31 +9,94 @@
 import UIKit
 import AlamofireImage
 
+private let reuseIdentifier = "SimilarCollectionViewCell"
+
 class DetailViewController: UIViewController {
     var detailMovie: Movie?
+    var similarMovies = [Movie]()
+    var movieId: Int = 0
     
     //MARK: Properties
     @IBOutlet weak var imageDetailMovie: UIImageView!
     @IBOutlet weak var overviewDetailMovie: UILabel!
     @IBOutlet weak var titleDetailMovie: UILabel!
     @IBOutlet weak var dateDetailMovie: UILabel!
-    @IBOutlet weak var countAverageDetailMovie: UILabel!
+    @IBOutlet weak var imageBackdropMovie: UIImageView!
+    
+    @IBOutlet weak var similarCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setOutletValue()
+        movieId = detailMovie?.id ?? 0
+        
+        //collection view
+        let nib = UINib(nibName: reuseIdentifier, bundle: nil)
+        similarCollectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+        similarCollectionView.dataSource = self
+        similarCollectionView.delegate = self
+        
+        RequestFacade.Similar(movieId: movieId, movieHandler: { (listMovie) in
+            self.similarMovies = listMovie.results
+            print(listMovie.results.count)
+            //self.similarMovies.removeSubrange(5..<20)
+            self.similarCollectionView.reloadData()
+        }) { (errorEnum) in
+            print(errorEnum)
+        }
+//        similarMovieTableView.dataSource = self
+//        similarMovieTableView.delegate = self
+//
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissDetail))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    
+    @objc func dismissDetail() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func setOutletValue() {
         titleDetailMovie.text = detailMovie?.titleMovie
         dateDetailMovie.text = detailMovie?.release_date
-        countAverageDetailMovie.text = "\(detailMovie?.vote_average ?? 0)"
+
         overviewDetailMovie.text = detailMovie?.overview
         
-        guard let image = detailMovie?.poster_path, let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)") else {
+        guard let image = detailMovie?.poster_path,  let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)") else {
             imageDetailMovie.tintColor = UIColor.clear
             return
         }
+        guard let backImage = detailMovie?.backdrop_path, let url2 = URL(string: "https://image.tmdb.org/t/p/w500\(backImage)") else {
+            imageBackdropMovie.tintColor = UIColor.clear
+            return
+        }
         imageDetailMovie.af_setImage(withURL: url)
+        imageBackdropMovie.af_setImage(withURL: url2)
     }
+}
+
+extension DetailViewController: UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return similarMovies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? SimilarCollectionViewCell else {
+            fatalError("The dequeued cell is not an instance ")
+        }
+        
+        let similarMovie = similarMovies[indexPath.item]
+        let image = similarMovie.poster_path
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)")
+        cell.posterImage.af_setImage(withURL: url!)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 98, height: 138)
+    }
+    
+    
 }

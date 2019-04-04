@@ -13,8 +13,9 @@ import Alamofire
 class ListViewController: UIViewController {
     
     var movies = [Movie]()
-    var selectedMoviee: Movie?
     var listView: ListView?
+    let transition = PopAnimation()
+    var selectedImage: UIImageView?
    
     override func viewWillAppear(_ animated: Bool) {
         (listView as? UIView)?.frame = self.view.bounds
@@ -26,6 +27,9 @@ class ListViewController: UIViewController {
         checkDevice()
         requestTrending()
         configurelistView()
+        transition.dismissCompletion = {
+            self.selectedImage!.isHidden = false
+        }
     }
     
     func checkDevice() {
@@ -49,6 +53,7 @@ class ListViewController: UIViewController {
     func configurelistView() {
         view.addSubview(listView as! UIView)
         listView?.listDelegate = self
+        
     }
 }
 
@@ -65,6 +70,8 @@ extension ListViewController: MovieListDelegate {
         let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)")
         cell.customImageMovie.af_setImage(withURL: url!)
         
+        selectedImage = cell.customImageMovie
+        
         if (cell.customTitleMovie != nil && cell.customVoteAverageMovie != nil) {
             cell.customTitleMovie?.text = movie.titleMovie
             cell.customVoteAverageMovie?.text = String(movie.vote_average)
@@ -72,30 +79,30 @@ extension ListViewController: MovieListDelegate {
     }
    
     func didSelectItemAt(index: Int) {
-        let selectedMovie = movies[index]
-        selectedMoviee = movies[index]
-        sendDataMovie()
-        //performSegue(withIdentifier: "showDetailMovie", sender: selectedMovie)
-    }
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailMovie" {
-            let detailVC = segue.destination as! DetailViewController
-            detailVC.detailMovie = sender as? Movie
-        }
-    }
-     let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-     detailViewController.movie = movies[atIndexPath.item]
-     self.navigationController!.pushViewController(detailViewController, animated: true)
-
-     
-     */
-    
-    func sendDataMovie(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailController = storyboard.instantiateViewController(withIdentifier:"DetailViewController") as? DetailViewController
-        detailController?.detailMovie = self.selectedMoviee
-        self.present(detailController! , animated: true, completion: nil)
+        let detailController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: DetailViewController.self)) as! DetailViewController
+//        let detailController = DetailCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
         
+        detailController.detailMovie = movies[index]
+        detailController.transitioningDelegate = self
+        present(detailController, animated: true)
+    }
+   
+}
+
+extension ListViewController: UIViewControllerTransitioningDelegate {
+    
+    // Asks your delegate for the transition animator object to use when presenting a view controller.
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = true
+        selectedImage!.superview!.convert(selectedImage!.frame, to: nil)
+
+        return transition
+    }
+    
+    // Asks your delegate for the transition animator object to use when dismissing a view controller.
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
     }
 }
+
