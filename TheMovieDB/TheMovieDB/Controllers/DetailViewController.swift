@@ -28,38 +28,42 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setOutletValue()
-        movieId = detailMovie?.id ?? 0
-        
-        //collection view
-        let nib = UINib(nibName: reuseIdentifier, bundle: nil)
-        similarCollectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
-        similarCollectionView.dataSource = self
-        similarCollectionView.delegate = self
-        
-        RequestFacade.Similar(movieId: movieId, movieHandler: { (listMovie) in
-            self.similarMovies = listMovie.results
-            print(listMovie.results.count)
-            //self.similarMovies.removeSubrange(5..<20)
-            self.similarCollectionView.reloadData()
-        }) { (errorEnum) in
-            print(errorEnum)
-        }
-//        similarMovieTableView.dataSource = self
-//        similarMovieTableView.delegate = self
-//
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissDetail))
-        view.addGestureRecognizer(tapGesture)
+        requestSimilar()
+        configureCollection()
+        tapGestureRecognizer()
     }
-    
     
     @objc func dismissDetail() {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func requestSimilar() {
+        movieId = detailMovie?.id ?? 0
+        RequestFacade.Similar(movieId: movieId, movieHandler: { (listMovie) in
+            self.similarMovies = listMovie.results
+            //self.similarMovies.removeSubrange(5..<20)
+            self.similarCollectionView.reloadData()
+        }) { (errorEnum) in
+            print(errorEnum)
+        }
+    }
+    
+    func configureCollection() {
+        //collection view
+        let nib = UINib(nibName: reuseIdentifier, bundle: nil)
+        similarCollectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+        similarCollectionView.dataSource = self
+        similarCollectionView.delegate = self
+    }
+    
+    func tapGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissDetail))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
     func setOutletValue() {
         titleDetailMovie.text = detailMovie?.titleMovie
         dateDetailMovie.text = detailMovie?.release_date
-
         overviewDetailMovie.text = detailMovie?.overview
         
         guard let image = detailMovie?.poster_path,  let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)") else {
@@ -75,6 +79,7 @@ class DetailViewController: UIViewController {
     }
 }
 
+//MARK: UICollectionView
 extension DetailViewController: UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -97,6 +102,5 @@ extension DetailViewController: UICollectionViewDataSource , UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 98, height: 138)
     }
-    
     
 }
