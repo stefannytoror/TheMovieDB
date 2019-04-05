@@ -1,13 +1,21 @@
-platform :ios, '10.0'
 use_frameworks!
 
-target 'TheMovieDB' do
-
+def sharedPods
   pod 'Alamofire', '~> 4.7'
   pod 'AlamofireImage', '~> 3.3'
-  pod 'OHHTTPStubs/Swift'
+end
+
+target 'TheMovieDB' do
+    platform :ios, '10.0'
+    pod 'OHHTTPStubs/Swift'
+    sharedPods
 
   target 'TheMovieDBTests' do
     inherit! :search_paths
   end
 end
+#
+#target 'Watch Extension' do
+#  platform :watchos, '2.0'
+#  sharedPods
+#end

@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-private let reuseIdentifier = "SimilarCollectionViewCell"
+private let reuseIdentifier = String(describing: SimilarCollectionViewCell.self)
 
 class DetailViewController: UIViewController {
     var detailMovie: Movie?

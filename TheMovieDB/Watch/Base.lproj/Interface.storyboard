@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vjS-Dc-iaO">
+    <device id="watch40" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+    </dependencies>
+    <scenes>
+        <!--Movie-->
+        <scene sceneID="4k2-vd-u0o">
+            <objects>
+                <controller identifier="Movie" hidesWhenLoading="NO" id="vjS-Dc-iaO" customClass="MovieInterfaceController" customModule="Watch_Extension">
+                    <items>
+                        <group width="1" alignment="left" contentMode="scaleAspectFit" id="by1-Ji-wgs">
+                            <items>
+                                <imageView width="1" alignment="left" id="h6H-tn-CdA"/>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="6" bottom="0.0"/>
+                        </group>
+                        <group width="1" alignment="left" id="EWu-aQ-tVn">
+                            <items>
+                                <label width="1" alignment="left" text="Label" id="i1v-6S-NAF"/>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="movieImage" destination="h6H-tn-CdA" id="Ebv-eU-jvn"/>
+                        <outlet property="movieTitle" destination="i1v-6S-NAF" id="Z3f-6b-Kzf"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="136" y="75"/>
+        </scene>
+    </scenes>
+</document>
