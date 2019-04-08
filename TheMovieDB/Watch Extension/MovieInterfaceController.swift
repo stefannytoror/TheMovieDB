@@ -16,6 +16,7 @@ class MovieInterfaceController: WKInterfaceController {
     //MARK: Properties
     @IBOutlet weak var movieImage: WKInterfaceImage!
     @IBOutlet weak var movieTitle: WKInterfaceLabel!
+    @IBOutlet weak var movieVoteAverage: WKInterfaceLabel!
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -23,5 +24,6 @@ class MovieInterfaceController: WKInterfaceController {
         let image = UIImage(named: "backImage")
         movieImage.setImage(image)
         movieTitle.setText(recomendedMovie.titleMovie)
+        movieVoteAverage.setText(String(recomendedMovie.vote_average))
     }
 }
