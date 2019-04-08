@@ -16,7 +16,7 @@
                     <items>
                         <group width="1" alignment="left" contentMode="scaleAspectFit" id="by1-Ji-wgs">
                             <items>
-                                <imageView width="1" height="100" alignment="left" image="backImage" contentMode="scaleAspectFill" id="h6H-tn-CdA">
+                                <imageView width="1" height="100" alignment="left" contentMode="scaleAspectFill" id="h6H-tn-CdA">
                                     <color key="tintColor" red="0.67053414889999996" green="0.81938321329999997" blue="0.97409326419999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </imageView>
                             </items>
