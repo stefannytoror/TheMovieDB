@@ -42,7 +42,7 @@ class ListViewController: UIViewController {
     }
     
     func requestTrending() {
-        RequestFacade.Trending(movieHandler: { (listMovie) in
+        RequestFacade.trending(movieHandler: { (listMovie) in
             self.movies = listMovie.results
             self.listView?.reloadData()
         }) { (errorEnum) in

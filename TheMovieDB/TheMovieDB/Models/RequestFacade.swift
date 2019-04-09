@@ -16,7 +16,7 @@ class RequestFacade {
     public static var url = "https://api.themoviedb.org/3/trending/movie/day?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
     
     // Completionhandler will be a function with a movie as a parameter and his return is void
-    static func Trending(movieHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
+    static func trending(movieHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
         Alamofire.request(url).responseJSON { response in
             switch response.result {
                 

@@ -12,11 +12,12 @@ class TopRatedListView: UICollectionView, ListView {
     var listDelegate: MovieListDelegate?
     let identifier = String(describing: TopRatedListCollectionViewCell.self)
     let itemsPerRow = CGFloat(2)
-    let itemSize = CGSize(width: 180, height: 260)
+    let itemSize = CGSize(width: 170, height: 260)
     
     init() {
         super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         configureCollection()
+        backgroundColor = .white
         dataSource = self
         delegate = self
     }
@@ -42,7 +43,15 @@ extension TopRatedListView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier , for: indexPath) as? TopRatedListCollectionViewCell else {
             fatalError("The dequeued cell is not an instance ")
         }
+        cell.backgroundColor = UIColor.white
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOffset = CGSize(width: 3, height: 3)
+        cell.layer.shadowOpacity = 0.7
+        cell.layer.shadowRadius = 4.0
+        cell.layer.cornerRadius = 6.0
+        cell.layer.masksToBounds = false
         listDelegate?.configure(cell: cell, index: indexPath.row)
+        
         return cell
     }
     
