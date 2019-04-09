@@ -72,8 +72,8 @@ class RequestFacade {
     }
     
     
-    static func upComing(movieHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
-        Alamofire.request("https://api.themoviedb.org/3/movie/upcoming?page=1&language=en-US&api_key=1f4d7de5836b788bdfd897c3e0d0a24b").responseJSON { response in
+    static func topRated(movieHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
+        Alamofire.request("https://api.themoviedb.org/3/movie/top_rated?page=1&language=en-US&api_key=1f4d7de5836b788bdfd897c3e0d0a24b").responseJSON { response in
             switch response.result {
                 
             case .success:

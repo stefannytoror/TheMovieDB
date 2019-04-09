@@ -20,4 +20,8 @@ protocol Cell {
     var customImageMovie: UIImageView! {get}
     var customTitleMovie: UILabel? {get}
     var customVoteAverageMovie: UILabel? {get}
+    var overview: UILabel? {get}
+    var popularity: UILabel? {get}
+    var releaseDate: UILabel? {get}
 }
+

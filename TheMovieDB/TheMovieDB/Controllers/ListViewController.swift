@@ -24,8 +24,8 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Trending"
-        checkDevice()
         requestTrending()
+        checkDevice()
         configurelistView()
         transition.dismissCompletion = {
             self.selectedImage!.isHidden = false
@@ -46,7 +46,6 @@ class ListViewController: UIViewController {
             self.movies = listMovie.results
             self.listView?.reloadData()
         }) { (errorEnum) in
-            print(errorEnum.errorDescription as Any)
         }
     }
     

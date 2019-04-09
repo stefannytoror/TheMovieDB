@@ -9,9 +9,12 @@
 import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell, Cell {
-    
+    var overview: UILabel?
+    var popularity: UILabel?
+    var releaseDate: UILabel?
     var customTitleMovie: UILabel?
-     var customVoteAverageMovie: UILabel?
+    var customVoteAverageMovie: UILabel?
+    
     @IBOutlet weak var customImageMovie: UIImageView!
     
     override func awakeFromNib() {

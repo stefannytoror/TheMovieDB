@@ -14,7 +14,6 @@ class ViewListTable: UITableView, ListView {
     var listDelegate: MovieListDelegate?
     let identifier = String(describing: CustomMovieTableViewCell.self)
     let rowHeightValue = 222
-    let spaceBetwenSections = 20
     
     init() {
         super.init(frame: CGRect.zero, style: .plain)

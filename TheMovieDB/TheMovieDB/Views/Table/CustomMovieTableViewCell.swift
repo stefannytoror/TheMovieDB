@@ -9,6 +9,9 @@
 import UIKit
 
 class CustomMovieTableViewCell: UITableViewCell, Cell {
+    var overview: UILabel?
+    var popularity: UILabel?
+    var releaseDate: UILabel?
        
     //MAKE: Properties
     @IBOutlet weak var customImageMovie: UIImageView!
