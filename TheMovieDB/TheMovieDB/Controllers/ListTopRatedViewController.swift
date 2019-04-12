@@ -19,10 +19,10 @@ class ListTopRatedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Top Rated"
         requestTopRated()
         checkDevice()
         configurelistView()
-       
     }
   
     func checkDevice() {
@@ -46,7 +46,6 @@ class ListTopRatedViewController: UIViewController {
     func configurelistView() {
         view.addSubview(listView as! UIView)
         listView?.listDelegate = self
-        
     }
 }
 

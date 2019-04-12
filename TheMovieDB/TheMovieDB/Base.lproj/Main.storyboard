@@ -41,20 +41,24 @@
                         <viewLayoutGuide key="safeArea" id="lbK-FJ-PTt"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="b5P-fi-hCN"/>
+                    <navigationItem key="navigationItem" id="834-fY-gaU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsT-qn-zpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-806" y="-1504"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="Eph-on-HGq">
             <objects>
                 <navigationController id="TSH-xZ-c0H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="jCW-cY-gqS"/>
+                    <tabBarItem key="tabBarItem" systemItem="topRated" id="jCW-cY-gqS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wEe-K7-G06">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="t1Z-Aw-t05" kind="relationship" relationship="rootViewController" id="2Eu-IJ-ey0"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bSe-Mq-9iU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,7 +85,7 @@
         <!--List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ListViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListViewController" id="BYZ-38-t0r" customClass="ListViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

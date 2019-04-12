@@ -65,13 +65,14 @@ class RequestFacadeTests: XCTestCase {
         RequestFacade.url = ""
         let expectation = self.expectation(description: "MakingRequest")
         
-        RequestFacade.Trending(movieHandler: { (listMovie) in
+        RequestFacade.trending(movieHandler: { (listMovie) in
             XCTFail()
         }) { (errorEnum) in
             error2 = errorEnum.errorDescription ?? ""
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 10.0, handler: nil)
+        //waitForExpectations(timeout: 5, handler: nil)
+        wait(for: [expectation], timeout: 3)
         XCTAssert(error2 == error)
     }
     
@@ -84,7 +85,7 @@ class RequestFacadeTests: XCTestCase {
         }
         let waiting = self.expectation(description: "MakingRequestMovieTrending")
         
-        RequestFacade.Trending(movieHandler: { (listMovie) in
+        RequestFacade.trending(movieHandler: { (listMovie) in
             
             XCTAssertEqual(self.mockListMovie.page,listMovie.page)
             
@@ -92,7 +93,7 @@ class RequestFacadeTests: XCTestCase {
             print(errorEnum)
             waiting.fulfill()
         }
-        waitForExpectations(timeout: 10.0, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
 }
