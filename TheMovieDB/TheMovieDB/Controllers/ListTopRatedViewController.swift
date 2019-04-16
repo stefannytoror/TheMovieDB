@@ -72,6 +72,12 @@ extension ListTopRatedViewController: MovieListDelegate {
         }
     }
     
+    func setAccessibilityLabel(cell: Cell, index: Int) -> String {
+        let movie = movies[index]
+        return movie.titleMovie
+    }
+    
+    
     func didSelectItemAt(index: Int) {
        print("nothing")
     }

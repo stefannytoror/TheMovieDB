@@ -20,22 +20,31 @@ class TheMovieUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func test() {
-        let tabBarsQuery = XCUIApplication().tabBars
-        let item = tabBarsQuery.buttons["Top Rated"]
-        item.tap()
-        if item.isSelected {
-            XCTAssertTrue(item.exists)
-        }
-        else{
-            XCTFail()
-        }
-        tabBarsQuery.buttons["Recents"].tap()
+    func testHeaders() {
+        app.tabBars.buttons["Top Rated"].tap()
+        let trendingLabel = app.navigationBars["Top Rated"]
+        XCTAssertTrue(trendingLabel.exists, "Header must exists")
+        
+        app.tabBars.buttons["Recents"].tap()
+        let RecentsLabel = app.navigationBars["Trending"]
+        XCTAssertTrue(RecentsLabel.exists, "Header must exists")
     }
     
-    func test2() {
-        let app = XCUIApplication()
-        app.tables.staticTexts["The Silence"].tap()
+    func testDetailsMovieCell() {
+        let movieTable = app/*@START_MENU_TOKEN@*/.tables["MovieTable"]/*[[".tables[\"Escape Room, Score: 6.3, Glass, Score: 6.6, How to Train Your Dragon: The Hidden World, Score: 7.6\"]",".tables[\"MovieTable\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let movieCell = app.tables["MovieTable"].cells["MovieCell 3"]
+        
+        while movieCell.exists == false {
+            movieTable.swipeUp()
+        }
+        movieCell.tap()
+        let titleDetail = app.staticTexts["TitleDetailMovie"]
+        let overviewDetail = app.staticTexts["OverviewDetailMovie"]
+        let dateDetail = app.staticTexts["DateDetailMovie"]
+        
+        XCTAssertTrue(titleDetail.exists, "Title detail must exists")
+        XCTAssertTrue(overviewDetail.exists, "Overview detail must exists")
+        XCTAssertTrue(dateDetail.exists, "Date detail must exists")
     }
 
 }

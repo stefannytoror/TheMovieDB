@@ -27,6 +27,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setAccessibility()
         setOutletValue()
         requestSimilar()
         configureCollection()
@@ -35,6 +36,12 @@ class DetailViewController: UIViewController {
     
     @objc func dismissDetail() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func setAccessibility() {
+        titleDetailMovie.accessibilityIdentifier = NSLocalizedString("TitleDetailMovieIdentifier", comment: "")
+        overviewDetailMovie.accessibilityIdentifier = NSLocalizedString("OverviewDetailMovieIdentifier", comment: "")
+        dateDetailMovie.accessibilityIdentifier = NSLocalizedString("DateDetailMovieIdentifier", comment: "")
     }
     
     func requestSimilar() {

@@ -20,6 +20,7 @@ class ViewListTable: UITableView, ListView {
         initializeTable()
         dataSource = self
         delegate = self
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,6 +31,8 @@ class ViewListTable: UITableView, ListView {
         let nib = UINib(nibName: identifier, bundle: nil)
         register(nib, forCellReuseIdentifier: identifier)
         rowHeight = CGFloat(rowHeightValue)
+        self.isAccessibilityElement = true
+        self.accessibilityIdentifier = NSLocalizedString("MovieTableIdentifier", comment: "")
     }
 }
 
@@ -45,6 +48,9 @@ extension ViewListTable: UITableViewDataSource {
             fatalError("The dequeued cell is not an instance of MovieTableViewCell.")
         }
         listDelegate?.configure(cell: cell , index: indexPath.row)
+        cell.accessibilityLabel = listDelegate?.setAccessibilityLabel(cell: cell, index: indexPath.row)
+        cell.accessibilityIdentifier = String.localizedStringWithFormat(NSLocalizedString("MovieCellIdentifier", comment: ""), indexPath.row)
+       
          return cell
     }
 }

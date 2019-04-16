@@ -8,3 +8,12 @@
 
 "DecodingError" = "Decode Error";
 "Other error" = "Other error";
+
+
+//  Identifiers
+"MovieTableIdentifier" = "MovieTable";
+"MovieCellIdentifier" = "MovieCell %i";
+"TitleDetailMovieIdentifier" = "TitleDetailMovie";
+"OverviewDetailMovieIdentifier" = "OverviewDetailMovie";
+"DateDetailMovieIdentifier" = "DateDetailMovie";
+

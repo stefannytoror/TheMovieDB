@@ -66,7 +66,7 @@ class RequestFacadeTests: XCTestCase {
         let expectation = self.expectation(description: "MakingRequest")
         
         RequestFacade.trending(movieHandler: { (listMovie) in
-            XCTFail()
+            XCTFail("Must return an error")
         }) { (errorEnum) in
             error2 = errorEnum.errorDescription ?? ""
             expectation.fulfill()
@@ -86,8 +86,7 @@ class RequestFacadeTests: XCTestCase {
         let waiting = self.expectation(description: "MakingRequestMovieTrending")
         
         RequestFacade.trending(movieHandler: { (listMovie) in
-            
-            XCTAssertEqual(self.mockListMovie.page,listMovie.page)
+            XCTAssertEqual(self.mockListMovie.page,listMovie.page, "Fetch data movie")
             
         }) { (errorEnum) in
             print(errorEnum)

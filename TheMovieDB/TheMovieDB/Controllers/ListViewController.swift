@@ -68,7 +68,6 @@ extension ListViewController: MovieListDelegate {
         let image = movie.backdrop_path
         let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)")
         cell.customImageMovie.af_setImage(withURL: url!)
-        
         selectedImage = cell.customImageMovie
         
         if (cell.customTitleMovie != nil && cell.customVoteAverageMovie != nil) {
@@ -76,7 +75,17 @@ extension ListViewController: MovieListDelegate {
             cell.customVoteAverageMovie?.text = String(movie.vote_average)
         }
     }
-   
+    
+    func setAccessibilityLabel(cell: Cell, index: Int) -> String {
+        let movie = movies[index]
+        var cellLabel = "\(movie.titleMovie), "
+        
+        if (cell.customVoteAverageMovie != nil) {
+            cellLabel.append("Score: \(String(describing: movie.vote_average))")
+        }
+        return cellLabel
+    }
+    
     func didSelectItemAt(index: Int) {
         let detailController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: DetailViewController.self)) as! DetailViewController
 //        let detailController = DetailCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
@@ -85,7 +94,6 @@ extension ListViewController: MovieListDelegate {
         detailController.transitioningDelegate = self
         present(detailController, animated: true)
     }
-   
 }
 
 extension ListViewController: UIViewControllerTransitioningDelegate {

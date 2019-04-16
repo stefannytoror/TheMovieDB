@@ -23,6 +23,7 @@ class CustomMovieTableViewCell: UITableViewCell, Cell {
         super.awakeFromNib()
         let star = UIImage(named: "highlightedStar") ?? nil
             customImageStar.image = star
+        setAcessibility()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,5 +33,15 @@ class CustomMovieTableViewCell: UITableViewCell, Cell {
     override func prepareForReuse() {
         super.prepareForReuse()
         customImageMovie.image = nil
+    }
+}
+
+fileprivate extension CustomMovieTableViewCell {
+    func setAcessibility() {
+        customImageMovie.isAccessibilityElement = false
+        customTitleMovie?.isAccessibilityElement = false
+        customVoteAverageMovie?.isAccessibilityElement = false
+        customImageStar.isAccessibilityElement = false
+        self.isAccessibilityElement = true
     }
 }

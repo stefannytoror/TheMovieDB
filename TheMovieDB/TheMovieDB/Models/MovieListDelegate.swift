@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MovieListDelegate: class {
     func numberOfItems() -> Int
     func configure(cell: Cell, index: Int)
     func didSelectItemAt(index: Int)
+    func setAccessibilityLabel(cell: Cell, index: Int) -> String 
 }
