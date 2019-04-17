@@ -22,7 +22,7 @@ class UpComingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Top Rated"
+        self.navigationItem.title = "Up Coming"
         requestTopRated()
         checkDevice()
         configurelistView()
