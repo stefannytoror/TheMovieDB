@@ -14,47 +14,11 @@ import OHHTTPStubs
 class RequestFacadeTests: XCTestCase {
     var testMovie = [Movie]()
     var error = ErrorEnum.errorConectionFaile.errorDescription
-    var mockMovieJson: [String: Any]?
-    var mockListMovie = ListMovie()
-    var mockMovie = Movie()
     
     override func setUp() {
         super.setUp()
-        mockMovieJson = [
-            "page": 1,
-            "results": [
-                ["backdrop_path": "/pZ78ksjPlXf3q2EeONN8WdHE03Y.jpg",
-                 "id": 500682,
-                 "overview": "In 1934",
-                 "release_date": "2019-03-15",
-                 "title": "The Highwaymen",
-                 "vote_average": 7.2,
-                 "vote_count": 101,
-                 "popularity": 20.394
-                ],
-                [
-                    "backdrop_path": "/pZ78ksjPlXf3q2EeONN8WdHE03Y.jpg",
-                    "id": 500682,
-                    "overview": "In 1934",
-                    "release_date": "2019-03-15",
-                    "title": "The Highwaymen",
-                    "vote_average": 7.2,
-                    "vote_count": 101,
-                    "popularity": 20.394
-                ]
-            ]
-        ]
-        mockMovie.backdrop_path =  "/pZ78ksjPlXf3q2EeONN8WdHE03Y.jpg"
-        mockMovie.id = 500682
-        mockMovie.overview = "In 1934"
-        mockMovie.titleMovie = "The Highwaymen"
-        mockMovie.popularity = 20.394
-        mockMovie.vote_count = 101
-        mockMovie.vote_average = 7.2
-        mockListMovie.page = 1
-        mockListMovie.results = [mockMovie]
-        
     }
+    
     override func tearDown() {
         super.tearDown()
         OHHTTPStubs.removeAllStubs()
@@ -76,23 +40,56 @@ class RequestFacadeTests: XCTestCase {
         XCTAssert(error2 == error)
     }
     
-    func testFetchSucces(){
+    func testFetchTrendingSucces(){
         RequestFacade.url = "https://api.themoviedb.org/3/trending/movie/day?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+        let mockPage = 1
+        let mockResults = [ListMovie]()
+        
         stub(condition: isHost("api.themoviedb.org")) { _ in
-            return OHHTTPStubsResponse(jsonObject: self.mockMovieJson!,
+            let mockMovieResponse: [String : Any] = [
+                "page" : mockPage,
+                "results" : mockResults
+            ]
+            return OHHTTPStubsResponse(jsonObject: mockMovieResponse,
                                        statusCode: 200,
                                        headers: nil)
         }
-        let waiting = self.expectation(description: "MakingRequestMovieTrending")
         
+        let waitingForService = expectation(description: "The movie db / movies call")
         RequestFacade.trending(movieHandler: { (listMovie) in
-            XCTAssertEqual(self.mockListMovie.page,listMovie.page, "Fetch data movie")
-            
+            XCTAssertEqual(mockPage,listMovie.page, "Fetch data movie")
+            waitingForService.fulfill()
         }) { (errorEnum) in
             print(errorEnum)
-            waiting.fulfill()
+            XCTFail()
+            waitingForService.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testFetchUpComingSucces() {
+        let mockPage = 1
+        let mockResults = [ListMovie]()
         
+        stub(condition: isHost("api.themoviedb.org")) { _ in
+            let mockMovieResponse: [String : Any] = [
+                "page" : mockPage,
+                "results" : mockResults
+            ]
+            return OHHTTPStubsResponse(jsonObject: mockMovieResponse,
+                                       statusCode: 200,
+                                       headers: nil)
+        }
+        
+        let waitingForService = expectation(description: "The movie db / movies call")
+        RequestFacade.upComing(movieHandler: { (listMovie) in
+            XCTAssertEqual(mockPage,listMovie.page, "Fetch data movie")
+            waitingForService.fulfill()
+        }) { (errorEnum) in
+            print(errorEnum)
+            XCTFail()
+            waitingForService.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
     }
 }

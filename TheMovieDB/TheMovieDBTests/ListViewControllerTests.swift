@@ -11,30 +11,56 @@ import XCTest
 @testable import TheMovieDB
 class ListViewControllerTests: XCTestCase {
     
-    var listViewController: ListViewController!
+    var tableView = ViewListTable()
+    var listDelegate: MovieListDelegate?
+    var cell: CustomMovieTableViewCell!
+    let identifierCell = String(describing: CustomMovieTableViewCell.self)
+    
+    var movieListDelegate = ListViewController()
     
     override func setUp() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let identifier = String(describing: ListViewController.self)
-        
-        listViewController = storyboard.instantiateViewController(withIdentifier: identifier) as? ListViewController
-         _ = listViewController.view
+        movieListDelegate.movies = [Movie()]
+        tableView.listDelegate = movieListDelegate
     }
 
     override func tearDown() {
-        listViewController = nil
+        listDelegate = nil
         super.tearDown()
     }
 
-    func testSubView() {
-        XCTAssert(listViewController.listView != nil)
+    
+    
+    func testListView() {
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell) as? CustomMovieTableViewCell
+        tableView.listDelegate?.configure(cell: cell!, index: 0)
+        
+        let movieSize = tableView.listDelegate?.numberOfItems()
+        let titleMovieCell = cell?.customTitleMovie?.text
+        
+        XCTAssertEqual(movieSize,movieListDelegate.movies.count)
+        XCTAssertEqual(titleMovieCell, "")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
+
+//class MockListViewController: MovieListDelegate {
+//    var movies = [Movie]()
+//    
+//    func numberOfItems() -> Int {
+//        return movies.count
+//    }
+//    
+//    func configure(cell: Cell, index: Int) {
+//        cell.customTitleMovie?.text = movies[0].titleMovie
+//        cell.popularity?.text = ""
+//    }
+//    
+//    func didSelectItemAt(index: Int) {
+//        print("selected \(index)")
+//    }
+//    
+//    func setAccessibilityLabel(cell: Cell, index: Int) -> String {
+//        return "identifier"
+//    }
+//    
+//    
+//}

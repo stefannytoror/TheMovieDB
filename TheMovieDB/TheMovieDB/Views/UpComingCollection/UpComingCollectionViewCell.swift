@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopRatedListCollectionViewCell: UICollectionViewCell, Cell {
+class UpComingCollectionViewCell: UICollectionViewCell, Cell {
     
     @IBOutlet weak var customVoteAverageMovie: UILabel?
     @IBOutlet weak var customTitleMovie: UILabel?

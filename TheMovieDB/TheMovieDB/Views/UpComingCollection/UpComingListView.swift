@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TopRatedListView: UICollectionView, ListView {
+class UpComingListView: UICollectionView, ListView {
     var listDelegate: MovieListDelegate?
-    let identifier = String(describing: TopRatedListCollectionViewCell.self)
+    let identifier = String(describing: UpComingCollectionViewCell.self)
     let itemsPerRow = CGFloat(2)
     let itemSize = CGSize(width: 170, height: 260)
     
@@ -33,14 +33,14 @@ class TopRatedListView: UICollectionView, ListView {
 }
 
 //MARK: Datasource
-extension TopRatedListView: UICollectionViewDataSource {
+extension UpComingListView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listDelegate?.numberOfItems() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier , for: indexPath) as? TopRatedListCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier , for: indexPath) as? UpComingCollectionViewCell else {
             fatalError("The dequeued cell is not an instance ")
         }
         cell.backgroundColor = UIColor.white
@@ -54,11 +54,10 @@ extension TopRatedListView: UICollectionViewDataSource {
         
         return cell
     }
-    
 }
 
 //MARK: DelegateFlowLayout
-extension TopRatedListView:  UICollectionViewDelegateFlowLayout {
+extension UpComingListView:  UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return itemSize
@@ -70,5 +69,10 @@ extension TopRatedListView:  UICollectionViewDelegateFlowLayout {
         let right = ((width - (itemSize.width * itemsPerRow)) / (itemsPerRow + 1))
         return UIEdgeInsets(top: 0, left: left, bottom: 0, right: right)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        listDelegate?.didSelectItemAt(index: indexPath.item )
+    }
 }
+
 

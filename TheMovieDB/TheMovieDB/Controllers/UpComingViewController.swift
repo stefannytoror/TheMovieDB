@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Foundation
+import Alamofire
+import AlamofireImage
 
-class ListTopRatedViewController: UIViewController {
+class UpComingViewController: UIViewController {
 
     var movies = [Movie]()
     var listView: ListView?
@@ -30,12 +33,12 @@ class ListTopRatedViewController: UIViewController {
             // Collection view
         }
         else {
-            listView = TopRatedListView()
+            listView = UpComingListView()
         }
     }
     
     func requestTopRated() {
-        RequestFacade.topRated(movieHandler: { (listMovie) in
+        RequestFacade.upComing(movieHandler: { (listMovie) in
             self.movies = listMovie.results
             self.listView?.reloadData()
         }) { (errorEnum) in
@@ -50,7 +53,7 @@ class ListTopRatedViewController: UIViewController {
 }
 
 //MARK: MovieListDelegate
-extension ListTopRatedViewController: MovieListDelegate {
+extension UpComingViewController: MovieListDelegate {
     
     func numberOfItems() -> Int {
         return movies.count
@@ -79,7 +82,10 @@ extension ListTopRatedViewController: MovieListDelegate {
     
     
     func didSelectItemAt(index: Int) {
-       print("nothing")
+        let detailController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: DetailCollectionViewController.self)) as! DetailCollectionViewController
+        
+        detailController.detailMovie = movies[index]
+        present(detailController, animated: true)
     }
     
 }

@@ -30,17 +30,16 @@
             </objects>
             <point key="canvasLocation" x="-1637" y="-823"/>
         </scene>
-        <!--List Top Rated View Controller-->
+        <!--Up Coming View Controller-->
         <scene sceneID="SWT-dP-4iZ">
             <objects>
-                <viewController id="t1Z-Aw-t05" customClass="ListTopRatedViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="t1Z-Aw-t05" customClass="UpComingViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LMD-y7-hN7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="lbK-FJ-PTt"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="b5P-fi-hCN"/>
                     <navigationItem key="navigationItem" id="834-fY-gaU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsT-qn-zpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -98,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="-823.20000000000005" y="-824.43778110944538"/>
         </scene>
-        <!--List Movie Collection View Controller-->
+        <!--Detail Collection View Controller-->
         <scene sceneID="86s-EI-70f">
             <objects>
-                <collectionViewController id="GeE-Vf-dHL" customClass="ListMovieCollectionViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="DetailCollectionViewController" id="GeE-Vf-dHL" customClass="DetailCollectionViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="A85-8u-wTr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

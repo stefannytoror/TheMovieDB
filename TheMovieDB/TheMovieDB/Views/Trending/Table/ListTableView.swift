@@ -12,7 +12,7 @@ import UIKit
 class ViewListTable: UITableView, ListView {
     
     var listDelegate: MovieListDelegate?
-    let identifier = String(describing: CustomMovieTableViewCell.self)
+    private let identifier = String(describing: CustomMovieTableViewCell.self)
     let rowHeightValue = 222
     
     init() {
@@ -20,7 +20,6 @@ class ViewListTable: UITableView, ListView {
         initializeTable()
         dataSource = self
         delegate = self
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,5 +60,4 @@ extension ViewListTable:  UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         listDelegate?.didSelectItemAt(index: indexPath.row)
     }
-    
 }

@@ -45,7 +45,7 @@ class PopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
             detailView.transform = scaleTransform
             detailView.clipsToBounds = true
         }
-
+        
         containerView.addSubview(toView)
         containerView.bringSubviewToFront(detailView)
         
@@ -62,8 +62,7 @@ class PopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                             self.dismissCompletion?()
                         }
                         transitionContext.completeTransition(true)
-        }
-        )
+        })
     }
-
+    
 }

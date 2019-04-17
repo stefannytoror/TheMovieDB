@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import AlamofireImage
+import Foundation
+import Alamofire
 
 private let reuseIdentifier = String(describing: SimilarCollectionViewCell.self)
 

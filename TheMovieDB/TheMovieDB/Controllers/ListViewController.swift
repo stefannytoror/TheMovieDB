@@ -66,7 +66,7 @@ extension ListViewController: MovieListDelegate {
     func configure(cell: Cell, index: Int) {
         let movie = movies[index]
         let image = movie.backdrop_path
-        let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)")
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(image ?? "")")
         cell.customImageMovie.af_setImage(withURL: url!)
         selectedImage = cell.customImageMovie
         

@@ -9,6 +9,7 @@
 import UIKit
 
 class DetailHeaderReusableView: UICollectionReusableView {
+    var imageMovie = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

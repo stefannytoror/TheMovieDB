@@ -9,8 +9,6 @@
 import Foundation
 import Alamofire
 
-
-
 // Capture use and then dealloc
 class RequestFacade {
     public static var url = "https://api.themoviedb.org/3/trending/movie/day?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
@@ -73,7 +71,37 @@ class RequestFacade {
     
     
     static func topRated(movieHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
-        Alamofire.request("https://api.themoviedb.org/3/movie/top_rated?page=1&language=en-US&api_key=1f4d7de5836b788bdfd897c3e0d0a24b").responseJSON { response in
+        let url = "https://api.themoviedb.org/3/movie/top_rated?page=1&language=en-US&api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+        Alamofire.request(url).responseJSON { response in
+            switch response.result {
+                
+            case .success:
+                print("Validation Successful")
+                guard let data = response.data else {
+                    errorHandler(ErrorEnum.errorDataNotFound)
+                    return
+                }
+                do {
+                    // Call the method and can escape
+                    movieHandler(try JSONDecoder().decode(ListMovie.self, from: data))
+                    
+                } catch let e as DecodingError {
+                    errorHandler(ErrorEnum.errorDecoder(e.localizedDescription))
+                    print(String(format: NSLocalizedString("DecodingError", comment: ""), e.localizedDescription))
+                } catch {
+                    errorHandler(ErrorEnum.otherError)
+                }
+                
+            case .failure(let error):
+                print(error)
+                errorHandler(ErrorEnum.errorConectionFaile)
+            }
+        }
+    }
+    
+    static func upComing(movieHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
+        Alamofire.request("https://api.themoviedb.org/3/movie/upcoming?page=1&language=en-US&api_key=1f4d7de5836b788bdfd897c3e0d0a24b").responseJSON { response in
+            //print(try! JSONSerialization.jsonObject(with: response.data!, options: []))
             switch response.result {
                 
             case .success:
@@ -110,7 +138,7 @@ class RequestFacade {
                     return
                 }
                 completionHandler(data)
-
+                
             case .failure(let error):
                 print(error)
             }
