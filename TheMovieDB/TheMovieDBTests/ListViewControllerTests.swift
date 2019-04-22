@@ -15,11 +15,14 @@ class ListViewControllerTests: XCTestCase {
     var listDelegate: MovieListDelegate?
     var cell: CustomMovieTableViewCell!
     let identifierCell = String(describing: CustomMovieTableViewCell.self)
+    var mockMovie = Movie()
     
     var movieListDelegate = ListViewController()
     
     override func setUp() {
-        movieListDelegate.movies = [Movie()]
+        mockMovie.titleMovie = "titleMovie"
+        mockMovie.overview = "overviewMovie"
+        movieListDelegate.movies = [mockMovie]
         tableView.listDelegate = movieListDelegate
     }
 
@@ -27,18 +30,15 @@ class ListViewControllerTests: XCTestCase {
         listDelegate = nil
         super.tearDown()
     }
-
-    
     
     func testListView() {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell) as? CustomMovieTableViewCell
         tableView.listDelegate?.configure(cell: cell!, index: 0)
-        
         let movieSize = tableView.listDelegate?.numberOfItems()
         let titleMovieCell = cell?.customTitleMovie?.text
         
-        XCTAssertEqual(movieSize,movieListDelegate.movies.count)
-        XCTAssertEqual(titleMovieCell, "")
+        XCTAssertEqual(movieSize,movieListDelegate.movies.count, "movieSize must have array movies size")
+        XCTAssertEqual(titleMovieCell, mockMovie.titleMovie, "label title of cell must contains the movie title")
     }
 }
 

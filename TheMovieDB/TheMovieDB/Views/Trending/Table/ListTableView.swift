@@ -31,7 +31,7 @@ class ViewListTable: UITableView, ListView {
         register(nib, forCellReuseIdentifier: identifier)
         rowHeight = CGFloat(rowHeightValue)
         self.isAccessibilityElement = true
-        self.accessibilityIdentifier = NSLocalizedString("MovieTableIdentifier", comment: "")
+        self.accessibilityIdentifier = AccessibilityHelper.MovieTable.rawValue
     }
 }
 
@@ -48,7 +48,7 @@ extension ViewListTable: UITableViewDataSource {
         }
         listDelegate?.configure(cell: cell , index: indexPath.row)
         cell.accessibilityLabel = listDelegate?.setAccessibilityLabel(cell: cell, index: indexPath.row)
-        cell.accessibilityIdentifier = String.localizedStringWithFormat(NSLocalizedString("MovieCellIdentifier", comment: ""), indexPath.row)
+        cell.accessibilityIdentifier = "\(AccessibilityHelper.MovieCell.rawValue) \(indexPath.row)"
        
          return cell
     }

@@ -40,9 +40,9 @@ class DetailViewController: UIViewController {
     }
     
     func setAccessibility() {
-        titleDetailMovie.accessibilityIdentifier = NSLocalizedString("TitleDetailMovieIdentifier", comment: "")
-        overviewDetailMovie.accessibilityIdentifier = NSLocalizedString("OverviewDetailMovieIdentifier", comment: "")
-        dateDetailMovie.accessibilityIdentifier = NSLocalizedString("DateDetailMovieIdentifier", comment: "")
+        titleDetailMovie.accessibilityIdentifier = AccessibilityHelper.TitleDetailMovie.rawValue
+        overviewDetailMovie.accessibilityIdentifier = AccessibilityHelper.OverviewDetailMovie.rawValue
+        dateDetailMovie.accessibilityIdentifier = AccessibilityHelper.DateDetailMovie.rawValue
     }
     
     func requestSimilar() {

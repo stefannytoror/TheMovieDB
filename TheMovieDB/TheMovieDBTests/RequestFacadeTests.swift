@@ -68,7 +68,7 @@ class RequestFacadeTests: XCTestCase {
     }
     
     func testFetchUpComingSucces() {
-        let mockPage = 1
+        let mockPage = 2
         let mockResults = [ListMovie]()
         
         stub(condition: isHost("api.themoviedb.org")) { _ in

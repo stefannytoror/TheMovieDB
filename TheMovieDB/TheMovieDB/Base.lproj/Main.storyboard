@@ -50,7 +50,7 @@
         <scene sceneID="Eph-on-HGq">
             <objects>
                 <navigationController id="TSH-xZ-c0H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="jCW-cY-gqS"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="jCW-cY-gqS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wEe-K7-G06">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -12,6 +12,15 @@ class TheMovieUITests: XCTestCase {
      var app: XCUIApplication!
     
     override func setUp() {
+//        stub(condition: isHost("api.themoviedb.org")) { _ in
+//            let mockMovieResponse: [String : Any] = [
+//                "page" : 1,
+//                "results" : [ListMovie]()
+//            ]
+//            return OHHTTPStubsResponse(jsonObject: mockMovieResponse,
+//                                       statusCode: 200,
+//                                       headers: nil)
+//        }
         app = XCUIApplication()
         app.launch()
     }
@@ -21,16 +30,17 @@ class TheMovieUITests: XCTestCase {
     }
     
     func testHeaders() {
-        app.tabBars.buttons["Top Rated"].tap()
-        let trendingLabel = app.navigationBars["Top Rated"]
-        XCTAssertTrue(trendingLabel.exists, "Header must exists")
+        app.tabBars.buttons["Featured"].tap()
+        let upComingLabel = app.navigationBars["Up Coming"]
+        XCTAssertTrue(upComingLabel.exists, "Header must exists")
         
         app.tabBars.buttons["Recents"].tap()
-        let RecentsLabel = app.navigationBars["Trending"]
-        XCTAssertTrue(RecentsLabel.exists, "Header must exists")
+        let TrendingLabel = app.navigationBars["Trending"]
+        XCTAssertTrue(TrendingLabel.exists, "Header must exists")
     }
     
     func testDetailsMovieCell() {
+        
         let movieTable = app/*@START_MENU_TOKEN@*/.tables["MovieTable"]/*[[".tables[\"Escape Room, Score: 6.3, Glass, Score: 6.6, How to Train Your Dragon: The Hidden World, Score: 7.6\"]",".tables[\"MovieTable\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         let movieCell = app.tables["MovieTable"].cells["MovieCell 3"]
         

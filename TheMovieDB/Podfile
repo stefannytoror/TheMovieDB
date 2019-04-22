@@ -14,8 +14,17 @@ target 'TheMovieDB' do
     inherit! :search_paths
   end
 end
+
+target 'Watch Extension' do
+  platform :watchos, '2.0'
+  pod 'Alamofire', '~> 4.7'
+end
+
+
+#source 'https://github.com/CocoaPods/Specs.git'
+#platform :ios, '10.0'
+#use_frameworks!
 #
-#target 'Watch Extension' do
-#  platform :watchos, '2.0'
-#  sharedPods
+#target '<Your Target Name>' do
+#  pod 'AlamofireImage', '~> 3.5'
 #end
