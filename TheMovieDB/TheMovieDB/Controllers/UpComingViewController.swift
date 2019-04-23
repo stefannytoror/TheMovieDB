@@ -44,6 +44,12 @@ class UpComingViewController: UIViewController {
         }) { (errorEnum) in
             print(errorEnum.errorDescription as Any)
         }
+        
+        RequestFacade.credits(movieId: 299534, creditsHandler: { (MovieCredits) in
+            print(MovieCredits.cast[0].name as Any)
+        }) { (ErrorEnum) in
+            print(ErrorEnum)
+        }
     }
     
     func configurelistView() {

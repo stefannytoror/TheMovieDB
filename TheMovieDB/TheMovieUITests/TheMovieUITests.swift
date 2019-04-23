@@ -12,15 +12,6 @@ class TheMovieUITests: XCTestCase {
      var app: XCUIApplication!
     
     override func setUp() {
-//        stub(condition: isHost("api.themoviedb.org")) { _ in
-//            let mockMovieResponse: [String : Any] = [
-//                "page" : 1,
-//                "results" : [ListMovie]()
-//            ]
-//            return OHHTTPStubsResponse(jsonObject: mockMovieResponse,
-//                                       statusCode: 200,
-//                                       headers: nil)
-//        }
         app = XCUIApplication()
         app.launch()
     }

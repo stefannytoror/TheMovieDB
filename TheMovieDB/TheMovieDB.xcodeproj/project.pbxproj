@@ -15,6 +15,10 @@
 		5654C4C1225B942600D26456 /* backImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56B8904C2257F37500C42F33 /* backImage.jpg */; };
 		5654C4C7225BEAFF00D26456 /* UpComingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5654C4C6225BEAFF00D26456 /* UpComingListView.swift */; };
 		5654C4C9225BF97F00D26456 /* UpComingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5654C4C8225BF97F00D26456 /* UpComingViewController.swift */; };
+		565F7BA5226F6B6B006F991B /* CreditsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F7BA4226F6B6B006F991B /* CreditsStruct.swift */; };
+		565F7BA8226F7567006F991B /* CreditsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F7BA4226F6B6B006F991B /* CreditsStruct.swift */; };
+		565F7BAB226FC204006F991B /* DetailCreditsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F7BA9226FC204006F991B /* DetailCreditsCollectionViewCell.swift */; };
+		565F7BAC226FC204006F991B /* DetailCreditsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565F7BAA226FC204006F991B /* DetailCreditsCollectionViewCell.xib */; };
 		566BD6C322398FFE008DE00D /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566BD6C122398FFE008DE00D /* CustomCollectionViewCell.swift */; };
 		566BD6C422398FFF008DE00D /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566BD6C222398FFE008DE00D /* CustomCollectionViewCell.xib */; };
 		56927E592242EB9D000EBF67 /* ListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56927E582242EB9D000EBF67 /* ListCollectionView.swift */; };
@@ -140,6 +144,9 @@
 		56515146224D730E004E3CCF /* highlightedStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = highlightedStar.png; path = ../../../../../Downloads/04_ImplementACustomControl/Images/highlightedStar.png; sourceTree = "<group>"; };
 		5654C4C6225BEAFF00D26456 /* UpComingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingListView.swift; sourceTree = "<group>"; };
 		5654C4C8225BF97F00D26456 /* UpComingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingViewController.swift; sourceTree = "<group>"; };
+		565F7BA4226F6B6B006F991B /* CreditsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsStruct.swift; sourceTree = "<group>"; };
+		565F7BA9226FC204006F991B /* DetailCreditsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCreditsCollectionViewCell.swift; sourceTree = "<group>"; };
+		565F7BAA226FC204006F991B /* DetailCreditsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCreditsCollectionViewCell.xib; sourceTree = "<group>"; };
 		566BD6C122398FFE008DE00D /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		566BD6C222398FFE008DE00D /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		56927E582242EB9D000EBF67 /* ListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionView.swift; sourceTree = "<group>"; };
@@ -282,6 +289,8 @@
 				5652DD052260CEF000FC3E7C /* UpComingCollection */,
 				56B8900E22579AF000C42F33 /* SimilarMovie */,
 				56B8901122579B6400C42F33 /* Animations */,
+				565F7BA9226FC204006F991B /* DetailCreditsCollectionViewCell.swift */,
+				565F7BAA226FC204006F991B /* DetailCreditsCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,9 +299,10 @@
 			isa = PBXGroup;
 			children = (
 				56F00F53222D5F51007022EF /* RequestFacade.swift */,
+				56EA4C55224BC3360066C366 /* MovieStruct.swift */,
+				565F7BA4226F6B6B006F991B /* CreditsStruct.swift */,
 				56E60FBF225245B300B064E4 /* MovieListDelegate.swift */,
 				564A61E4223C4C6B00B72B7C /* MovieListProtocols.swift */,
-				56EA4C55224BC3360066C366 /* MovieStruct.swift */,
 				56EA4C5C224C1D4E0066C366 /* ErrorEnum.swift */,
 				56C4D026226E144E008F2918 /* AccessibilityHelper.swift */,
 			);
@@ -361,10 +371,10 @@
 				56B890472257D95100C42F33 /* UpcomingJson.swift */,
 				56B890492257DC6000C42F33 /* Facade.swift */,
 				56B8902B2257A60500C42F33 /* NotificationController.swift */,
+				56B890522257F51A00C42F33 /* MovieInterfaceController.swift */,
 				56B8902D2257A60600C42F33 /* Assets.xcassets */,
 				56B8902F2257A60600C42F33 /* Info.plist */,
 				56B890302257A60600C42F33 /* PushNotificationPayload.apns */,
-				56B890522257F51A00C42F33 /* MovieInterfaceController.swift */,
 			);
 			path = "Watch Extension";
 			sourceTree = "<group>";
@@ -683,6 +693,7 @@
 				56EA4C59224C0CAD0066C366 /* Localizable.strings in Resources */,
 				F50BD2B01E37A41D008821F8 /* Main.storyboard in Resources */,
 				566BD6C422398FFF008DE00D /* CustomCollectionViewCell.xib in Resources */,
+				565F7BAC226FC204006F991B /* DetailCreditsCollectionViewCell.xib in Resources */,
 				56E88AC1225686C600F5525D /* SimilarCollectionViewCell.xib in Resources */,
 				56E4C09D223843680065C76D /* CustomMovieTableViewCell.xib in Resources */,
 				56B890402257B01200C42F33 /* Watch Extension.appex in Resources */,
@@ -828,6 +839,7 @@
 				56B8902C2257A60500C42F33 /* NotificationController.swift in Sources */,
 				56C4D025226E06B4008F2918 /* RequestFacade.swift in Sources */,
 				56B8904A2257DC6000C42F33 /* Facade.swift in Sources */,
+				565F7BA8226F7567006F991B /* CreditsStruct.swift in Sources */,
 				56B890532257F51A00C42F33 /* MovieInterfaceController.swift in Sources */,
 				56B8903D2257AF7600C42F33 /* MovieStruct.swift in Sources */,
 				56B8902A2257A60500C42F33 /* ExtensionDelegate.swift in Sources */,
@@ -843,10 +855,12 @@
 				566BD6C322398FFE008DE00D /* CustomCollectionViewCell.swift in Sources */,
 				5654C4C9225BF97F00D26456 /* UpComingViewController.swift in Sources */,
 				56C4D027226E144E008F2918 /* AccessibilityHelper.swift in Sources */,
+				565F7BA5226F6B6B006F991B /* CreditsStruct.swift in Sources */,
 				56EA4C56224BC3360066C366 /* MovieStruct.swift in Sources */,
 				564A61E5223C4C6B00B72B7C /* MovieListProtocols.swift in Sources */,
 				56E60FC0225245B300B064E4 /* MovieListDelegate.swift in Sources */,
 				56E4C09C223843680065C76D /* CustomMovieTableViewCell.swift in Sources */,
+				565F7BAB226FC204006F991B /* DetailCreditsCollectionViewCell.swift in Sources */,
 				56CDEAB622402D270023CA94 /* ListTableView.swift in Sources */,
 				F50BD2AD1E37A41D008821F8 /* ListViewController.swift in Sources */,
 				56F00F54222D5F51007022EF /* RequestFacade.swift in Sources */,

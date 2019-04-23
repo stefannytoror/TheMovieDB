@@ -144,4 +144,34 @@ class RequestFacade {
             }
         }
     }
+    
+    static func credits(movieId: Int, creditsHandler: @escaping (MovieCredits) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
+        Alamofire.request("https://api.themoviedb.org/3/movie/\(movieId)/credits?api_key=1f4d7de5836b788bdfd897c3e0d0a24b").responseJSON { response in
+            switch response.result {
+                
+            case .success:
+                print("Validation Successful")
+                guard let data = response.data else {
+                    errorHandler(ErrorEnum.errorDataNotFound)
+                    return
+                }
+                do {
+                    // Call the method and can escape
+                    creditsHandler(try JSONDecoder().decode(MovieCredits.self, from: data))
+                    
+                } catch let e as DecodingError {
+                    errorHandler(ErrorEnum.errorDecoder(e.localizedDescription))
+                    print(String(format: NSLocalizedString("DecodingError", comment: ""), e.localizedDescription))
+                } catch {
+                    errorHandler(ErrorEnum.otherError)
+                }
+                
+            case .failure(let error):
+                print(error)
+                errorHandler(ErrorEnum.errorConectionFaile)
+            }
+        }
+    }
+    
+   
 }
