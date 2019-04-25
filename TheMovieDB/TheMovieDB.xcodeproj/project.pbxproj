@@ -10,6 +10,7 @@
 		50205107A1D376A0F1D2BFF2 /* Pods_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D1551881C30722E8B14A02 /* Pods_Watch_Extension.framework */; };
 		562CAFCD225FCDEF0021557E /* TheMovieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562CAFCC225FCDEF0021557E /* TheMovieUITests.swift */; };
 		564759B62243EF0B00E677F9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564759B52243EF0B00E677F9 /* DetailViewController.swift */; };
+		564932502270AB06008B33A4 /* FetchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649324F2270AB06008B33A4 /* FetchServiceTests.swift */; };
 		564A61E5223C4C6B00B72B7C /* MovieListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564A61E4223C4C6B00B72B7C /* MovieListProtocols.swift */; };
 		56515147224D730F004E3CCF /* highlightedStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 56515146224D730E004E3CCF /* highlightedStar.png */; };
 		5654C4C1225B942600D26456 /* backImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56B8904C2257F37500C42F33 /* backImage.jpg */; };
@@ -140,6 +141,7 @@
 		562CAFCC225FCDEF0021557E /* TheMovieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieUITests.swift; sourceTree = "<group>"; };
 		562CAFCE225FCDEF0021557E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		564759B52243EF0B00E677F9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5649324F2270AB06008B33A4 /* FetchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchServiceTests.swift; sourceTree = "<group>"; };
 		564A61E4223C4C6B00B72B7C /* MovieListProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListProtocols.swift; sourceTree = "<group>"; };
 		56515146224D730E004E3CCF /* highlightedStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = highlightedStar.png; path = ../../../../../Downloads/04_ImplementACustomControl/Images/highlightedStar.png; sourceTree = "<group>"; };
 		5654C4C6225BEAFF00D26456 /* UpComingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingListView.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				F50BD2BF1E37A41D008821F8 /* TheMovieDBTests.swift */,
 				569C3FE0225399FA0069D9ED /* ListViewControllerTests.swift */,
 				569C3FDE2253986F0069D9ED /* RequestFacadeTests.swift */,
+				5649324F2270AB06008B33A4 /* FetchServiceTests.swift */,
 				F50BD2C11E37A41D008821F8 /* Info.plist */,
 			);
 			path = TheMovieDBTests;
@@ -879,6 +882,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				564932502270AB06008B33A4 /* FetchServiceTests.swift in Sources */,
 				569C3FE1225399FA0069D9ED /* ListViewControllerTests.swift in Sources */,
 				F50BD2C01E37A41D008821F8 /* TheMovieDBTests.swift in Sources */,
 				569C3FDF2253986F0069D9ED /* RequestFacadeTests.swift in Sources */,

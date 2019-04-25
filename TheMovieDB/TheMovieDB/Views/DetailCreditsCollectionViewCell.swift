@@ -10,13 +10,21 @@ import UIKit
 
 class DetailCreditsCollectionViewCell: UICollectionViewCell {
     
-    //MASK: Properties
+    let borderWidth = 1
+    
+    //MARK: Properties
     @IBOutlet weak var actorImage: UIImageView!
+    @IBOutlet weak var actorName: UILabel!
+    @IBOutlet weak var actorCharacter: UILabel!
+    @IBOutlet weak var actorGender: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        actorImage.layer.borderWidth = 1
+        roundedImage()
+    }
+    
+    func roundedImage() {
+        actorImage.layer.borderWidth = CGFloat(borderWidth)
         actorImage.layer.masksToBounds = false
         actorImage.layer.borderColor = UIColor.black.cgColor
         actorImage.layer.cornerRadius = actorImage.frame.height/2

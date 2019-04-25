@@ -44,12 +44,6 @@ class UpComingViewController: UIViewController {
         }) { (errorEnum) in
             print(errorEnum.errorDescription as Any)
         }
-        
-        RequestFacade.credits(movieId: 299534, creditsHandler: { (MovieCredits) in
-            print(MovieCredits.cast[0].name as Any)
-        }) { (ErrorEnum) in
-            print(ErrorEnum)
-        }
     }
     
     func configurelistView() {
@@ -90,7 +84,7 @@ extension UpComingViewController: MovieListDelegate {
     func didSelectItemAt(index: Int) {
         let detailController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: DetailCollectionViewController.self)) as! DetailCollectionViewController
         
-        detailController.detailMovie = movies[index]
+        detailController.movieDetail = movies[index]
         present(detailController, animated: true)
     }
     
