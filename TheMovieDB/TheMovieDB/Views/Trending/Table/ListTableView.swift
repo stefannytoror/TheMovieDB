@@ -29,7 +29,6 @@ class ViewListTable: UITableView, ListView {
     func initializeTable() {
         let nib = UINib(nibName: identifier, bundle: nil)
         register(nib, forCellReuseIdentifier: identifier)
-        rowHeight = CGFloat(rowHeightValue)
         self.isAccessibilityElement = true
         self.accessibilityIdentifier = AccessibilityHelper.MovieTable.rawValue
     }
@@ -52,6 +51,10 @@ extension ViewListTable: UITableViewDataSource {
        
          return cell
     }
+    
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return CGFloat(rowHeightValue)
+//    }
 }
 
 //MARK: Delegate
@@ -60,4 +63,6 @@ extension ViewListTable:  UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         listDelegate?.didSelectItemAt(index: indexPath.row)
     }
+    
+    
 }

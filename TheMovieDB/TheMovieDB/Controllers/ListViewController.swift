@@ -17,9 +17,9 @@ class ListViewController: UIViewController {
     let transition = PopAnimation()
     var selectedImage: UIImageView?
    
-    override func viewWillAppear(_ animated: Bool) {
-        (listView as? UIView)?.frame = self.view.bounds
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        (listView as? UIView)?.frame = self.view.bounds
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,12 @@ class ListViewController: UIViewController {
     }
     
     func configurelistView() {
-        view.addSubview(listView as! UIView)
+        (listView as? UIView)?.frame = self.view.bounds
+        let contentView = listView as! UIView
+        view.addSubview(contentView)
+        contentView.addConstraints(toFillSuperView: view)
+        
+        
         listView?.listDelegate = self
         
     }

@@ -32,7 +32,7 @@ class FetchServiceTests: XCTestCase {
     func testFailureResponse() {
         let waitingForService = self.expectation(description: "The movie db / movies fetch")
         
-        RequestFacade.urlTopRated = "https://api.themoviedb.org/3/movie/upcoming?page=4&language=en-US&api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+        RequestFacade.urlTopRated = "https://api.themoviedb.org/3/movie/upcoming?page=1&language=en-US&api_key="
         
         RequestFacade.topRated(movieHandler: { (ListMovie) in
            waitingForService.fulfill()

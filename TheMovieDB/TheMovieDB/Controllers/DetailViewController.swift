@@ -48,7 +48,7 @@ class DetailViewController: UIViewController {
     func requestSimilar() {
         movieId = detailMovie?.id ?? 0
         RequestFacade.Similar(movieId: movieId, movieHandler: { (listMovie) in
-            //self.similarMovies.removeSubrange(5..<20)
+            self.similarMovies = listMovie.results
             self.similarCollectionView.reloadData()
         }) { (errorEnum) in
             print(errorEnum)

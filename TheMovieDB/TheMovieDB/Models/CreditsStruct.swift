@@ -19,3 +19,8 @@ struct Cast: Codable {
     var name: String? = ""
     var profile_path: String? = ""
 }
+
+enum Gender: String {
+    case Male
+    case Female
+}

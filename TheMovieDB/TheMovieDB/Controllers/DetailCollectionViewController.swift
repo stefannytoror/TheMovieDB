@@ -61,6 +61,8 @@ class DetailCollectionViewController: UICollectionViewController {
         let url = URL(string: "https://image.tmdb.org/t/p/w500\(actorImage ?? "")")
         cell.actorImage.af_setImage(withURL: url!)
         cell.actorName.text = actor.name
+        cell.actorCharacter.text = actor.character
+        cell.actorGender.text = (actor.gender == 1) ? Gender.Female.rawValue : Gender.Male.rawValue
         return cell
     }
     

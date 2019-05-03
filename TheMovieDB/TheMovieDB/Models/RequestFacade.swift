@@ -134,7 +134,7 @@ class RequestFacade {
                 completionHandler(data)
                 
             case .failure(let error):
-                print(error)
+                print(" ### requestImage error: \(error)")
             }
         }
     }

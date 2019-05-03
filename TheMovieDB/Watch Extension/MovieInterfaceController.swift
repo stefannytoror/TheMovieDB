@@ -20,10 +20,22 @@ class MovieInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        recomendedMovie = Facade.randomMovie()
-        let image = UIImage(named: "backImage")
-        movieImage.setImage(image)
-        movieTitle.setText(recomendedMovie.titleMovie)
-        movieVoteAverage.setText(String(recomendedMovie.vote_average))
+        
+        requestRandomMovie()
+    }
+    
+    func requestRandomMovie() {
+        RequestFacade.upComing(movieHandler: { (listMovie) in
+            let movies = listMovie.results
+            let randomNumber = Int.random(in: 0 ..< movies.count)
+            self.recomendedMovie = movies[randomNumber]
+            RequestFacade.requestImage(movie: self.recomendedMovie) { (data) in
+                self.movieImage.setImageData(data)
+            }
+            self.movieTitle.setText(self.recomendedMovie.titleMovie)
+            self.movieVoteAverage.setText(String(self.recomendedMovie.vote_average))
+        }) { (ErrorEnum) in
+            
+        }
     }
 }
