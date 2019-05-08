@@ -64,12 +64,12 @@ extension UpComingViewController: MovieListDelegate {
         let image = movie.poster_path
         let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)")
         cell.customImageMovie.af_setImage(withURL: url!)
-        if (cell.customTitleMovie != nil && cell.customVoteAverageMovie != nil) {
+        if (cell.customVoteAverageMovie != nil) {
             cell.customTitleMovie?.text? = movie.titleMovie.uppercased()
             cell.customVoteAverageMovie?.text = String(movie.vote_average)
         }
-        if (cell.overview != nil && cell.popularity != nil && cell.releaseDate != nil) {
-            cell.overview?.text = movie.overview
+        if (cell.popularity != nil && cell.releaseDate != nil) {
+            //cell.overview?.text = movie.overview
             cell.popularity?.text = String(movie.popularity)
             cell.releaseDate?.text = movie.release_date
         }
