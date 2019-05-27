@@ -167,5 +167,26 @@ class RequestFacade {
         }
     }
     
-   
+    static func series(movieHandler: @escaping (ListTvSeries) -> Void ,errorHandler: @escaping (RequestError) -> Void) {
+        Alamofire.request("https://api.themoviedb.org/3/tv/popular?page=1&language=en-US&api_key=1f4d7de5836b788bdfd897c3e0d0a24b").responseJSON { response in
+            let statusCode = response.response?.statusCode
+            
+            switch response.result {
+            case .success:
+                guard let data = response.data else {
+                    return
+                }
+                
+                do {
+                    movieHandler(try JSONDecoder().decode(ListTvSeries.self, from: data))
+                } catch {
+                    errorHandler(ErrorHandler.response(error: error, statusCode: statusCode ?? 0))
+                }
+                
+            case .failure(let error):
+                errorHandler(ErrorHandler.response(error: error, statusCode: statusCode ?? 0))
+            }
+        }
+    }
+    
 }
