@@ -14,6 +14,7 @@ import AlamofireImage
 class UpComingViewController: UIViewController {
 
     var movies = [Movie]()
+    var detailMovie: Movie?
     var listView: ListView?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -22,7 +23,7 @@ class UpComingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Up Coming"
+        self.navigationItem.title = "Now Playing"
         requestTopRated()
         checkDevice()
         configurelistView()
@@ -49,6 +50,14 @@ class UpComingViewController: UIViewController {
     func configurelistView() {
         view.addSubview(listView as! UIView)
         listView?.listDelegate = self
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "upComingSelectedSegue") {
+            // Create a new variable to store the instance of PlayerTableViewController
+            let detailVC = segue.destination as! DetailCollectionViewController
+            detailVC.movieDetail = detailMovie
+        }
     }
 }
 
@@ -82,10 +91,10 @@ extension UpComingViewController: MovieListDelegate {
     
     
     func didSelectItemAt(index: Int) {
-        let detailController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: DetailCollectionViewController.self)) as! DetailCollectionViewController
-        
-        detailController.movieDetail = movies[index]
-        present(detailController, animated: true)
+        detailMovie = movies[index]
+        performSegue(withIdentifier: "upComingSelectedSegue", sender: nil)
+       
     }
+  
     
 }
