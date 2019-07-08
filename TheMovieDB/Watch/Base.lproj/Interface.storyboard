@@ -38,13 +38,14 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="container" destination="by1-Ji-wgs" id="5gm-Gh-dyj"/>
                         <outlet property="movieImage" destination="h6H-tn-CdA" id="Ebv-eU-jvn"/>
                         <outlet property="movieTitle" destination="i1v-6S-NAF" id="Z3f-6b-Kzf"/>
                         <outlet property="movieVoteAverage" destination="mHm-xa-krJ" id="XZl-iy-6t7"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="363" y="337"/>
+            <point key="canvasLocation" x="385" y="337"/>
         </scene>
         <!--Interface Controller-->
         <scene sceneID="2dc-ce-IrY">
@@ -61,7 +62,7 @@
                                 <button width="1" alignment="center" verticalAlignment="bottom" title="Recommend me!" id="YIP-eZ-ZtZ">
                                     <color key="titleColor" red="0.0" green="0.87889331579999996" blue="0.50801855019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <connections>
-                                        <segue destination="vjS-Dc-iaO" kind="modal" id="WLL-5S-JR2"/>
+                                        <segue destination="vjS-Dc-iaO" kind="modal" id="U9v-qv-fgw"/>
                                     </connections>
                                 </button>
                             </items>
