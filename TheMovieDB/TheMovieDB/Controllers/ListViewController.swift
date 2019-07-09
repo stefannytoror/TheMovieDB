@@ -16,11 +16,8 @@ class ListViewController: UIViewController {
     var listView: ListView?
     let transition = PopAnimation()
     var selectedImage: UIImageView?
-   
-//    override func viewWillAppear(_ animated: Bool) {
-//        (listView as? UIView)?.frame = self.view.bounds
-//    }
-    
+    var selectedListType : MoviesListType = .nowPlaying
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Trending"
@@ -42,10 +39,12 @@ class ListViewController: UIViewController {
     }
     
     func requestTrending() {
-        RequestFacade.trending(movieHandler: { (listMovie) in
+
+        RequestFacade.retrieveMovieList(type: selectedListType, object: ListMovie.self, movieHandler: { (listMovie) in
             self.movies = listMovie.results
             self.listView?.reloadData()
-        }) { (errorEnum) in
+        }) { (RequestError) in
+            print(RequestError)
         }
     }
     

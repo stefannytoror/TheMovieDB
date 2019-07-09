@@ -11,10 +11,44 @@ import Alamofire
 
 // Capture use and then dealloc
 class RequestFacade {
-    public static var url = "https://api.themoviedb.org/3/trending/movie/day?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
-    public static var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?page=1&language=en-US&api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+   
+    
+    static func retrieveMovieList<T:Codable>(type: MoviesListType, object:T.Type, movieHandler:  @escaping (T) -> Void, errorHandler: @escaping (RequestError) -> Void) {
+        let urlRequest = TheMovieDBService.host + type.path
+        
+        Alamofire.request(urlRequest,
+                          method: .get,
+                          parameters: ["api_key": TheMovieDBService.apiKey],
+                          encoding: URLEncoding.default ,
+                          headers: nil)
+            .responseData {
+                response in
+                switch response.result {
+                case .success:
+                    guard let data = response.data else {
+                        return
+                    }
+                    
+                    do {
+                        movieHandler(try JSONDecoder().decode(object, from: data))
+                    } catch {
+                        errorHandler(ErrorHandler.response(error: error, statusCode:0))
+                    }
+                    
+                case .failure(let error):
+                    errorHandler(ErrorHandler.response(error: error, statusCode: 0))
+                }
+        }
+    }
+    
+    
+    
+    
+    
     
     // Completionhandler will be a function with a movie as a parameter and his return is void
+    public static var url = "https://api.themoviedb.org/3/trending/movie/day?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+    public static var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?page=1&language=en-US&api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
     static func trending(movieHandler: @escaping (ListMovie) -> Void ,errorHandler: @escaping (ErrorEnum) -> Void) {
         Alamofire.request(url).responseJSON { response in
             switch response.result {

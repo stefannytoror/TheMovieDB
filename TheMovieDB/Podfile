@@ -3,6 +3,7 @@ use_frameworks!
 def sharedPods
   pod 'Alamofire', '~> 4.7'
   pod 'AlamofireImage', '~> 3.3'
+  pod 'Swifter'
 end
 
 target 'TheMovieDB' do
@@ -12,6 +13,14 @@ target 'TheMovieDB' do
 
   target 'TheMovieDBTests' do
     inherit! :search_paths
+    pod 'Alamofire', '~> 4.7'
+  end
+  
+
+  target 'MovieUITests' do
+#    inherit! :search_paths
+#    pod 'Alamofire', '~> 4.7'
+
   end
 end
 

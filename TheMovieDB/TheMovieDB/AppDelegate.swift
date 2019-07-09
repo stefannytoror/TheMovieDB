@@ -12,17 +12,27 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow()
-        window?.makeKeyAndVisible()
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let swipingController = PageControlCollectionViewController(collectionViewLayout:layout)
-        window?.rootViewController = swipingController
-        // Override point for customization after application launch.
+        //TODO: Pass code into a new class
+        if ProcessInfo.processInfo.isUITesting {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let initialViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
+            
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "DetailCollectionViewController") as? DetailCollectionViewController
+            
+            //TODO: Change moviedetail and detailmovie
+            UITestsFacade.getObject(type: Movie.self, parsingHandler: { (movie) in
+                initialViewController?.movieDetail = movie
+                print(movie)
+            }) { (error) in
+                print(error)
+            }
+            window?.rootViewController = initialViewController
+        }
+
         return true
     }
 

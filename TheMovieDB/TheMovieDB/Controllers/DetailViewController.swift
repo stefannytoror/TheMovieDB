@@ -47,11 +47,12 @@ class DetailViewController: UIViewController {
     
     func requestSimilar() {
         movieId = detailMovie?.id ?? 0
-        RequestFacade.Similar(movieId: movieId, movieHandler: { (listMovie) in
-            self.similarMovies = listMovie.results
+        let selectedListType : MoviesListType = .similar(id: movieId)
+        RequestFacade.retrieveMovieList(type: selectedListType, object: ListMovie.self, movieHandler: { (movieList) in
+            self.similarMovies = movieList.results
             self.similarCollectionView.reloadData()
-        }) { (errorEnum) in
-            print(errorEnum)
+        }) { (RequestError) in
+            print(RequestError)
         }
     }
     
@@ -84,6 +85,20 @@ class DetailViewController: UIViewController {
         imageDetailMovie.af_setImage(withURL: url)
         imageBackdropMovie.af_setImage(withURL: url2)
     }
+    
+    //MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "creditsSegue") {
+            // Create a new variable to store the instance of PlayerTableViewController
+            let detailVC = segue.destination as! DetailCollectionViewController
+            detailVC.movieDetail = detailMovie
+        }
+    }
+    
+    @IBAction func launchCreditsMovie(_ sender: Any) {
+        performSegue(withIdentifier: "creditsSegue", sender: nil)
+    }
+    
 }
 
 //MARK: UICollectionView

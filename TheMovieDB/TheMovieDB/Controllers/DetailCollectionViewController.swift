@@ -16,6 +16,7 @@ class DetailCollectionViewController: UICollectionViewController {
     var movieDetail: Movie?
     var movieCast = [Cast]()
     
+    
     let headerHeight: CGFloat = 200
     let itemHeight: CGFloat = 100
     let minimunLineSpacing = 4
@@ -35,19 +36,21 @@ class DetailCollectionViewController: UICollectionViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
+    //MARK: Request
     func requestCredits() {
-        RequestFacade.credits(movieId: movieDetail?.id ?? 0 , creditsHandler: { (MovieCredits) in
-            self.movieCast = MovieCredits.cast
+        let selectedListType : MoviesListType = .credits(id: movieDetail?.id ?? 0)
+        RequestFacade.retrieveMovieList(type: selectedListType, object: MovieCredits.self, movieHandler: { (movieCredits) in
+            self.movieCast = movieCredits.cast
             self.movieCast = Array(self.movieCast.prefix(10))
             self.collectionView.reloadData()
-        }) { (ErrorEnum) in
-            print(ErrorEnum)
+            
+        }) { (RequestError) in
+            print(RequestError)
         }
     }
 
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //TODO:
         print(movieCast.count)
         return movieCast.count
     }

@@ -224,6 +224,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7M-V7-NV5">
+                                <rect key="frame" x="309" y="257" width="50" height="30"/>
+                                <state key="normal" title="Credits"/>
+                                <connections>
+                                    <action selector="launchCreditsMovie:" destination="p6N-2v-l9t" eventType="touchUpInside" id="Tas-dF-iCg"/>
+                                    <segue destination="GeE-Vf-dHL" kind="show" identifier="creditsSegue" id="lXi-QL-uBh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -237,17 +245,21 @@
                             <constraint firstItem="Ph0-0k-eOq" firstAttribute="top" secondItem="zze-1V-e32" secondAttribute="top" constant="49" id="ASx-yn-Xoy"/>
                             <constraint firstItem="7im-Te-sNa" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" id="FKy-yA-SxU"/>
                             <constraint firstItem="zze-1V-e32" firstAttribute="trailing" secondItem="eBI-NF-egt" secondAttribute="trailing" constant="16" id="FcR-ZI-MVL"/>
+                            <constraint firstItem="zze-1V-e32" firstAttribute="trailing" secondItem="A7M-V7-NV5" secondAttribute="trailing" constant="16" id="NUw-1a-MGC"/>
                             <constraint firstItem="jv6-jU-LhE" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" constant="16" id="P9j-9H-wRH"/>
                             <constraint firstItem="mXv-ge-Kxh" firstAttribute="leading" secondItem="jv6-jU-LhE" secondAttribute="trailing" constant="8" id="PnO-HE-XI6"/>
                             <constraint firstItem="IGe-Fo-KCm" firstAttribute="top" secondItem="Ph0-0k-eOq" secondAttribute="bottom" constant="-29" id="Q2K-9f-i04"/>
                             <constraint firstItem="7im-Te-sNa" firstAttribute="top" secondItem="eBI-NF-egt" secondAttribute="bottom" constant="14" id="Rem-P0-Rud"/>
                             <constraint firstItem="7im-Te-sNa" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" id="Sh1-xy-wgO"/>
                             <constraint firstItem="jv6-jU-LhE" firstAttribute="top" secondItem="zze-1V-e32" secondAttribute="top" constant="160" id="TfR-lu-ylQ"/>
+                            <constraint firstItem="A7M-V7-NV5" firstAttribute="top" secondItem="Ph0-0k-eOq" secondAttribute="bottom" constant="8" id="VKV-Wg-HhG"/>
+                            <constraint firstItem="A7M-V7-NV5" firstAttribute="leading" secondItem="jv6-jU-LhE" secondAttribute="trailing" constant="201" id="bNv-nr-jEJ"/>
                             <constraint firstItem="zze-1V-e32" firstAttribute="trailing" secondItem="IGe-Fo-KCm" secondAttribute="trailing" constant="16" id="bZy-eC-n5v"/>
                             <constraint firstItem="7im-Te-sNa" firstAttribute="trailing" secondItem="zze-1V-e32" secondAttribute="trailing" id="hdT-0K-yMZ"/>
                             <constraint firstItem="QvI-Sb-exp" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" id="hdb-fs-fKe"/>
                             <constraint firstItem="zze-1V-e32" firstAttribute="trailing" secondItem="mXv-ge-Kxh" secondAttribute="trailing" constant="16" id="jcP-uK-MF1"/>
                             <constraint firstItem="QvI-Sb-exp" firstAttribute="top" secondItem="7im-Te-sNa" secondAttribute="bottom" constant="-1.5" id="lx5-aP-wlK"/>
+                            <constraint firstItem="eBI-NF-egt" firstAttribute="top" secondItem="A7M-V7-NV5" secondAttribute="bottom" constant="39" id="nmo-Zt-UTB"/>
                             <constraint firstItem="Ph0-0k-eOq" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" id="uhL-Mj-qCg"/>
                             <constraint firstItem="Ph0-0k-eOq" firstAttribute="trailing" secondItem="zze-1V-e32" secondAttribute="trailing" id="v0d-GH-yey"/>
                         </constraints>
@@ -271,4 +283,7 @@
         <image name="icons8-documentary-filled-30" width="30" height="30"/>
         <image name="icons8-tv-show-30" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lXi-QL-uBh"/>
+    </inferredMetricsTieBreakers>
 </document>

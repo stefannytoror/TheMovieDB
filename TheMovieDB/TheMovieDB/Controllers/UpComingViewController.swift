@@ -1,5 +1,5 @@
 //
-//  ListTopRatedViewController.swift
+//  UpComingViewController.swift
 //  TheMovieDB
 //
 //  Created by Stefanny Toro Ramirez on 4/8/19.
