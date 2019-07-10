@@ -13,7 +13,7 @@ import Alamofire
 private let reuseIdentifier = String(describing: SimilarCollectionViewCell.self)
 
 class DetailViewController: UIViewController {
-    var detailMovie: Movie?
+    var movieDetail: Movie?
     var similarMovies = [Movie]()
     var movieId: Int = 0
     
@@ -46,7 +46,7 @@ class DetailViewController: UIViewController {
     }
     
     func requestSimilar() {
-        movieId = detailMovie?.id ?? 0
+        movieId = movieDetail?.id ?? 0
         let selectedListType : MoviesListType = .similar(id: movieId)
         RequestFacade.retrieveMovieList(type: selectedListType, object: ListMovie.self, movieHandler: { (movieList) in
             self.similarMovies = movieList.results
@@ -70,15 +70,15 @@ class DetailViewController: UIViewController {
     }
     
     func setOutletValue() {
-        titleDetailMovie.text = detailMovie?.titleMovie
-        dateDetailMovie.text = detailMovie?.release_date
-        overviewDetailMovie.text = detailMovie?.overview
+        titleDetailMovie.text = movieDetail?.titleMovie
+        dateDetailMovie.text = movieDetail?.release_date
+        overviewDetailMovie.text = movieDetail?.overview
         
-        guard let image = detailMovie?.poster_path,  let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)") else {
+        guard let image = movieDetail?.poster_path,  let url = URL(string: "https://image.tmdb.org/t/p/w500\(image)") else {
             imageDetailMovie.tintColor = UIColor.clear
             return
         }
-        guard let backImage = detailMovie?.backdrop_path, let url2 = URL(string: "https://image.tmdb.org/t/p/w500\(backImage)") else {
+        guard let backImage = movieDetail?.backdrop_path, let url2 = URL(string: "https://image.tmdb.org/t/p/w500\(backImage)") else {
             imageBackdropMovie.tintColor = UIColor.clear
             return
         }
@@ -90,8 +90,8 @@ class DetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "creditsSegue") {
             // Create a new variable to store the instance of PlayerTableViewController
-            let detailVC = segue.destination as! DetailCollectionViewController
-            detailVC.movieDetail = detailMovie
+            let detailVC = segue.destination as! CreditsCollectionViewController
+            detailVC.movieDetail = movieDetail
         }
     }
     

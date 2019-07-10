@@ -1,5 +1,5 @@
 //
-//  DetailCollectionViewController.swift
+//  CreditsCollectionViewController.swift
 //  TheMovieDB
 //
 //  Created by Stefanny Toro Ramirez on 4/4/19.
@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "DetailCreditsCollectionViewCell"
 private let headerIdentifier = "HeaderCellId"
 
-class DetailCollectionViewController: UICollectionViewController {
+class CreditsCollectionViewController: UICollectionViewController {
     
     var movieDetail: Movie?
     var movieCast = [Cast]()
@@ -92,7 +92,7 @@ class DetailCollectionViewController: UICollectionViewController {
     }
 }
 
-extension DetailCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension CreditsCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 365, height: itemHeight)

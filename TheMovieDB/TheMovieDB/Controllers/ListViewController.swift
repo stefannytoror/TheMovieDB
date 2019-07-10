@@ -94,7 +94,7 @@ extension ListViewController: MovieListDelegate {
         let detailController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: DetailViewController.self)) as! DetailViewController
 //        let detailController = DetailCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
         
-        detailController.detailMovie = movies[index]
+        detailController.movieDetail = movies[index]
         detailController.transitioningDelegate = self
         present(detailController, animated: true)
     }
@@ -102,7 +102,7 @@ extension ListViewController: MovieListDelegate {
 
 extension ListViewController: UIViewControllerTransitioningDelegate {
     
-    // Asks your delegate for the transition animator object to use when presenting a view controller.
+    // Asks delegate for the transition animator object to use when presenting a view controller.
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.presenting = true
         selectedImage!.superview!.convert(selectedImage!.frame, to: nil)

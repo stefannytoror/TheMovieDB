@@ -9,12 +9,12 @@
 import Foundation
 
 //TODO: Change protocol
-protocol TestApi {
-    static func getData<T: Codable>(type: T.Type) -> T
-}
+//protocol TestApi {
+//    static func getData<T: Codable>(type: T.Type) -> T
+//}
 
 struct UITestsFacade {
-    static var jsonData: Data? {
+    static var jsonDataDependency: Data? {
         if let json = ProcessInfo.processInfo.environment["JSON"], let data = json.data(using: .utf8) {
             return data
         }
@@ -23,13 +23,13 @@ struct UITestsFacade {
         }
     }
     
-    static func getObject<T:Codable>(type: T.Type, parsingHandler:  @escaping (T) -> Void, errorHandler: @escaping (RequestError) -> Void) {
+    static func extractJsonDependency<T:Codable>(type: T.Type, parsingHandler:  @escaping (T) -> Void, errorHandler: @escaping (RequestError) -> Void) {
         do {
-            guard (jsonData != nil) else {
+            guard (jsonDataDependency != nil) else {
                 print("JSON DATA NIL")
                 return
             }
-            parsingHandler(try JSONDecoder().decode(T.self, from: jsonData!))
+            parsingHandler(try JSONDecoder().decode(T.self, from: jsonDataDependency!))
         }
         catch let error {
             errorHandler(ErrorHandler.response(error: error, statusCode: 0))

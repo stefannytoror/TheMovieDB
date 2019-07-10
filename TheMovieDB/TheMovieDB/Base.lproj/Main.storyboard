@@ -135,10 +135,10 @@
             </objects>
             <point key="canvasLocation" x="-823.20000000000005" y="-824.43778110944538"/>
         </scene>
-        <!--Detail Collection View Controller-->
+        <!--Credits Collection View Controller-->
         <scene sceneID="86s-EI-70f">
             <objects>
-                <collectionViewController storyboardIdentifier="DetailCollectionViewController" id="GeE-Vf-dHL" customClass="DetailCollectionViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="CreditsCollectionViewController" id="GeE-Vf-dHL" customClass="CreditsCollectionViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="A85-8u-wTr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,7 +225,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7M-V7-NV5">
-                                <rect key="frame" x="309" y="257" width="50" height="30"/>
+                                <rect key="frame" x="116" y="288" width="50" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="aJm-rx-Tby"/>
+                                </constraints>
                                 <state key="normal" title="Credits"/>
                                 <connections>
                                     <action selector="launchCreditsMovie:" destination="p6N-2v-l9t" eventType="touchUpInside" id="Tas-dF-iCg"/>
@@ -241,26 +244,25 @@
                             <constraint firstItem="QvI-Sb-exp" firstAttribute="leading" secondItem="7im-Te-sNa" secondAttribute="trailing" constant="-375" id="5wR-hB-uK3"/>
                             <constraint firstItem="QvI-Sb-exp" firstAttribute="bottom" secondItem="zze-1V-e32" secondAttribute="bottom" id="8bo-a4-exd"/>
                             <constraint firstItem="7im-Te-sNa" firstAttribute="trailing" secondItem="zze-1V-e32" secondAttribute="trailing" id="8uP-8f-zKX"/>
+                            <constraint firstItem="A7M-V7-NV5" firstAttribute="leading" secondItem="jv6-jU-LhE" secondAttribute="trailing" constant="8" id="9Vh-Ef-rT8"/>
                             <constraint firstItem="IGe-Fo-KCm" firstAttribute="leading" secondItem="jv6-jU-LhE" secondAttribute="trailing" constant="147" id="9yO-d9-kVX"/>
                             <constraint firstItem="Ph0-0k-eOq" firstAttribute="top" secondItem="zze-1V-e32" secondAttribute="top" constant="49" id="ASx-yn-Xoy"/>
                             <constraint firstItem="7im-Te-sNa" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" id="FKy-yA-SxU"/>
                             <constraint firstItem="zze-1V-e32" firstAttribute="trailing" secondItem="eBI-NF-egt" secondAttribute="trailing" constant="16" id="FcR-ZI-MVL"/>
-                            <constraint firstItem="zze-1V-e32" firstAttribute="trailing" secondItem="A7M-V7-NV5" secondAttribute="trailing" constant="16" id="NUw-1a-MGC"/>
                             <constraint firstItem="jv6-jU-LhE" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" constant="16" id="P9j-9H-wRH"/>
                             <constraint firstItem="mXv-ge-Kxh" firstAttribute="leading" secondItem="jv6-jU-LhE" secondAttribute="trailing" constant="8" id="PnO-HE-XI6"/>
                             <constraint firstItem="IGe-Fo-KCm" firstAttribute="top" secondItem="Ph0-0k-eOq" secondAttribute="bottom" constant="-29" id="Q2K-9f-i04"/>
                             <constraint firstItem="7im-Te-sNa" firstAttribute="top" secondItem="eBI-NF-egt" secondAttribute="bottom" constant="14" id="Rem-P0-Rud"/>
                             <constraint firstItem="7im-Te-sNa" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" id="Sh1-xy-wgO"/>
                             <constraint firstItem="jv6-jU-LhE" firstAttribute="top" secondItem="zze-1V-e32" secondAttribute="top" constant="160" id="TfR-lu-ylQ"/>
-                            <constraint firstItem="A7M-V7-NV5" firstAttribute="top" secondItem="Ph0-0k-eOq" secondAttribute="bottom" constant="8" id="VKV-Wg-HhG"/>
-                            <constraint firstItem="A7M-V7-NV5" firstAttribute="leading" secondItem="jv6-jU-LhE" secondAttribute="trailing" constant="201" id="bNv-nr-jEJ"/>
                             <constraint firstItem="zze-1V-e32" firstAttribute="trailing" secondItem="IGe-Fo-KCm" secondAttribute="trailing" constant="16" id="bZy-eC-n5v"/>
                             <constraint firstItem="7im-Te-sNa" firstAttribute="trailing" secondItem="zze-1V-e32" secondAttribute="trailing" id="hdT-0K-yMZ"/>
                             <constraint firstItem="QvI-Sb-exp" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" id="hdb-fs-fKe"/>
                             <constraint firstItem="zze-1V-e32" firstAttribute="trailing" secondItem="mXv-ge-Kxh" secondAttribute="trailing" constant="16" id="jcP-uK-MF1"/>
                             <constraint firstItem="QvI-Sb-exp" firstAttribute="top" secondItem="7im-Te-sNa" secondAttribute="bottom" constant="-1.5" id="lx5-aP-wlK"/>
-                            <constraint firstItem="eBI-NF-egt" firstAttribute="top" secondItem="A7M-V7-NV5" secondAttribute="bottom" constant="39" id="nmo-Zt-UTB"/>
+                            <constraint firstItem="A7M-V7-NV5" firstAttribute="bottom" secondItem="jv6-jU-LhE" secondAttribute="bottom" id="rpY-eP-8pQ"/>
                             <constraint firstItem="Ph0-0k-eOq" firstAttribute="leading" secondItem="zze-1V-e32" secondAttribute="leading" id="uhL-Mj-qCg"/>
+                            <constraint firstItem="zze-1V-e32" firstAttribute="trailing" secondItem="A7M-V7-NV5" secondAttribute="trailing" constant="209" id="ukL-t1-lyq"/>
                             <constraint firstItem="Ph0-0k-eOq" firstAttribute="trailing" secondItem="zze-1V-e32" secondAttribute="trailing" id="v0d-GH-yey"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zze-1V-e32"/>

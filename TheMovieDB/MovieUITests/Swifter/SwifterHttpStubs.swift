@@ -18,7 +18,6 @@ class SwifterHttpStubs {
     
     var server = HttpServer()
     
-    
     func tearDown() {
         server.stop()
     }
@@ -26,9 +25,6 @@ class SwifterHttpStubs {
     
     func setupStub(url: String, filename: String, method: HTTPMethod = .GET) {
         let testBundle = Bundle(for: type(of: self))
-//        let bundle = Bundle(for: type(of: self))
-//        print(bundle)
-        
         
         let filePath = testBundle.path(forResource: filename, ofType: "json")
         let fileUrl = URL(fileURLWithPath: filePath!)

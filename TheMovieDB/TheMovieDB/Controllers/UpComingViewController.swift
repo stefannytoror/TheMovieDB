@@ -55,7 +55,7 @@ class UpComingViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "upComingSelectedSegue") {
             // Create a new variable to store the instance of PlayerTableViewController
-            let detailVC = segue.destination as! DetailCollectionViewController
+            let detailVC = segue.destination as! CreditsCollectionViewController
             detailVC.movieDetail = detailMovie
         }
     }

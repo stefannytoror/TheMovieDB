@@ -15,22 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        //TODO: Pass code into a new class
         if ProcessInfo.processInfo.isUITesting {
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let initialViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
-            
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "DetailCollectionViewController") as? DetailCollectionViewController
-            
-            //TODO: Change moviedetail and detailmovie
-            UITestsFacade.getObject(type: Movie.self, parsingHandler: { (movie) in
-                initialViewController?.movieDetail = movie
-                print(movie)
-            }) { (error) in
-                print(error)
-            }
-            window?.rootViewController = initialViewController
+            window?.rootViewController = InitializeDependency.makeDetailViewController()
+            //window?.rootViewController = InitializeDependency.makeCreditsCollectionViewController()
         }
 
         return true
